@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Management</title>
+    <style>
+         body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            margin: auto;
+            width: 600px;
+            border: 2px solid black;
+            height: auto;
+            padding: 30px;
+            background-color: #dadada;
+        }
+        h2{
+            display: flex;
+            justify-content: center;
+        }
+        .border{
+            border-bottom: 2px solid black;
+        }
+        .content{
+            display: flex;
+            margin-top: 10px;
+        }
+        .btn{
+            margin-top: 10px;
+        }
+        button{
+            color:whitesmoke;
+            background-color: blue;
+            font-size: 1.1rem;
+            width: 100px;
+            border-radius: 4px;
+        }
+        input{
+            border-radius: 5px;
+            height: 20px;
+        }
+        label{
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <h2>New Category</h2>
+        <div class="border"></div>
+        <div class="content">
+            <label for="#">Category code :</label>
+            <input type="number" >
+        </div>
+        <div class="btn">
+            <button>Ok</button>
+            <button>Cancel</button>
+        </div>
+    </div>
+</body>
+</html>

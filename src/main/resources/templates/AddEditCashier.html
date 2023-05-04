@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add edit cashier</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            margin: auto;
+            border-radius: 5px;
+            background-color: #dadada;
+            width: 600px;
+            height: 600px;
+            border: 2px solid black;
+        }
+        h3{
+            display: flex;
+            justify-content: center;
+            color: black;
+            
+        }
+        .border{
+            border-bottom: 2px solid black;
+        }
+        .btn{
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        button{
+            color:whitesmoke;
+            background-color: blue;
+            font-size: 1.1rem;
+            width: 100px;
+            border-radius: 4px;
+        }
+        .content{
+            display: flex;
+            padding: 30px;
+        }
+        .content_left{
+            /* background-color: antiquewhite; */
+            /* width: 300px; */
+        }
+        /* input{
+            margin-left:100px;
+        } */
+        .content_right{
+            margin-left: 20px;
+            width: 250px;
+            height: 250px;
+            background-color: rgb(230, 248, 248);
+            border-radius: 5px;
+        }
+        input{
+            width: 170px;
+            height: 20px;
+            border-radius: 4px;
+        }
+        select{
+            width: 176px;
+            height: 25px;
+            border-radius: 4px;
+        }
+        .Input{
+            display: flex;
+            justify-content: space-between;
+        }
+        label{
+            color: #2B5876;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h3>New Cashier</h3>
+        </div>
+        <div class="border"></div>
+        <div class="content">
+            <div class="content_left">
+                <div class="Input">
+                    <label for="#">First name :</label>
+                    <input type="text" placeholder="Input first name">
+                </div><br>
+                <div class="Input">
+                    <label for="#">Last name :</label>
+                    <input type="text" placeholder="Input last name">
+                </div><br>
+                <div class="Input">
+                    <label for="#">Sex  :</label>
+                    <select name="selection">
+                        <option value="select">Select Your Gender</option>
+                        <option value="male">Male</option>
+                        <option value="Femal">Femal</option>
+                    </select>
+                </div><br>
+                <div class="Input">
+                    <label for="#">Date of Birth :</label>
+                    <input type="date" >
+                </div><br>
+                <div class="Input">
+                    <label for="#">Login :</label>
+                    <input type="text" placeholder="Input your name">
+                </div><br>
+                <div class="Input">
+                    <label for="#">Password : </label>
+                    <input type="password" placeholder="Input password">
+                </div>
+            </div>
+            <div class="content_right">
+
+            </div>
+        </div>
+        <div class="btn">
+            <button>Ok</button>
+            <button>Cancel</button>
+        </div>
+
+    </div>
+</body>
+</html>
