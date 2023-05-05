@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories Management</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            margin: auto;
+            width: 600px;
+            border: 2px solid black;
+            height: auto;
+            padding: 30px;
+            background-color: #dadada;
+        }
+        h2{
+            display: flex;
+            justify-content: center;
+        }
+        .border{
+            border-bottom: 2px solid black;
+        }
+        .content{
+            display: flex;
+            margin-top: 10px;
+        }
+        .btn{
+            margin-top: 10px;
+        }
+        button{
+            color:whitesmoke;
+            background-color: blue;
+            font-size: 1.1rem;
+            width: 100px;
+            border-radius: 4px;
+        }
+        label{
+            color: #2B5876;
+        }
+        input{
+            width: 170px;
+            height: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form class="wrapper"  th:action="@{/new_drink}" th:object="${category}" method="POST">
+        <h2>New Category</h2>
+        <div class="border"></div>
+        <div class="content">
+            <label for="#">Category code :</label>
+            <input th:field="*{code}" type="text" placeholder="code of ctegory">
+        </div>
+        <div class="content">
+            <label for="#">Category name :</label>
+            <input th:field="*{name}" type="text" placeholder="name of ctegory">
+        </div>
+        <div class="btn">
+            <button type="submit" >Ok</button>
+            <button>Cancel</button>
+        </div>
+    </form>
+</body>
+</html>

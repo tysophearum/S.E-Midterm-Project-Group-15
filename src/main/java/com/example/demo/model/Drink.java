@@ -84,7 +84,7 @@ public class Drink {
     }
 
     public boolean isEmpty(){
-        if(name.isEmpty() || price.isNaN()){
+        if(name.isEmpty() & price.isNaN() & code.isEmpty()){
             return true;
         }
         else{

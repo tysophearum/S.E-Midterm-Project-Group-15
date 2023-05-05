@@ -41,8 +41,8 @@ public class DrinkController {
 
     @GetMapping("/drink_management")
     public String listDrink (Model model) {
-        // model.addAttribute("drinks", drinkService.getAllDrinks());
-        return "redirect:/drink_management/" + drinkService.getFirstDrink().getId();
+        model.addAttribute("drinks", drinkService.getAllDrinks());
+        return "drinkManagement";
     }
 
     @GetMapping("/drink_management/edit/{id}")
@@ -79,6 +79,6 @@ public class DrinkController {
         model.addAttribute("drinks", drinkService.getAllDrinks());
         model.addAttribute("selectedCategory", category);
         model.addAttribute("selectedDrink", selectDrink);
-        return "drinkManagement";
+        return "viewDrink";
     }
 }

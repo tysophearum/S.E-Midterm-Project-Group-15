@@ -15,11 +15,11 @@ public class Receipt {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer invoice_id;
+    private Integer incoice_id;
 
     private Float cash_received;
 
-    private Float change;
+    private Float cash_change;
 
     @CreationTimestamp
     private LocalDateTime created_at;
@@ -32,12 +32,12 @@ public class Receipt {
         this.id = id;
     }
 
-    public Integer getInvoice_id() {
-        return this.invoice_id;
+    public Integer getIncoice_id() {
+        return this.incoice_id;
     }
 
-    public void setInvoice_id(Integer invoice_id) {
-        this.invoice_id = invoice_id;
+    public void setIncoice_id(Integer incoice_id) {
+        this.incoice_id = incoice_id;
     }
 
     public Float getCash_received() {
@@ -48,12 +48,12 @@ public class Receipt {
         this.cash_received = cash_received;
     }
 
-    public Float getChange() {
-        return this.change;
+    public Float getCash_change() {
+        return this.cash_change;
     }
 
-    public void setChange(Float change) {
-        this.change = change;
+    public void setCash_change(Float cash_change) {
+        this.cash_change = cash_change;
     }
 
     public LocalDateTime getCreated_at() {
@@ -63,5 +63,5 @@ public class Receipt {
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
-    
+
 }

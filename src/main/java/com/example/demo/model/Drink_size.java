@@ -38,4 +38,11 @@ public class Drink_size {
     public void setPrice(Float price) {
         this.price = price;
     }
+
+
+    public Drink_size(String name, Float price) {
+        this.name = name;
+        this.price = price;
+    }
+
 }

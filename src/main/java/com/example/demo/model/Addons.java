@@ -39,4 +39,10 @@ public class Addons {
         this.value = value;
     }
 
+
+    public Addons(String name, Integer value) {
+        this.name = name;
+        this.value = value;
+    }
+
 }
