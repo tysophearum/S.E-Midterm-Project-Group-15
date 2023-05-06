@@ -17,6 +17,8 @@ public class Drink_order {
 
     private Integer size_id;
 
+    private Integer amount;
+
     public Integer getId() {
         return this.id;
     }
@@ -47,6 +49,14 @@ public class Drink_order {
 
     public void setSize_id(Integer size_id) {
         this.size_id = size_id;
+    }
+
+    public Integer getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(Integer amount) {
+        this.amount = amount;
     }
 
 }

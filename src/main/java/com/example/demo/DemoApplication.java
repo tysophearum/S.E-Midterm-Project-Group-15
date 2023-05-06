@@ -29,8 +29,8 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		if(drinkSizeRepository.count() == 0){
 			Drink_size drink_size_small = new Drink_size("small", (float) 0);
-			Drink_size drink_size_medium = new Drink_size("small", (float) 0.25);
-			Drink_size drink_size_large = new Drink_size("small", (float) 0.5);
+			Drink_size drink_size_medium = new Drink_size("medium", (float) 0.25);
+			Drink_size drink_size_large = new Drink_size("large", (float) 0.5);
 			
 			drinkSizeRepository.save(drink_size_small);
 			drinkSizeRepository.save(drink_size_medium);

@@ -45,4 +45,7 @@ public class Addons {
         this.value = value;
     }
 
+    public Addons() {
+    }
+
 }

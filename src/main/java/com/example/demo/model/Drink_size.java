@@ -45,4 +45,9 @@ public class Drink_size {
         this.price = price;
     }
 
+
+    public Drink_size() {
+    }
+
+
 }

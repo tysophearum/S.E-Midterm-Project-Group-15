@@ -53,9 +53,9 @@
             </div>
             <div class="border border-gray-400 my-2"></div>
             <div th:each="category: ${categories}" th:id="${'dcontent' + category.id}" class="grid-cols-3 gap-2 hidden dcontent">
-                <div th:each="drink: ${drinks}" th:if="${drink.category_id == category.id}" onclick="openForm()" class="rounded-lg bg-white hover:bg-black duration-200 hover:text-white">
-                    <img th:src="*{'data:image/jpeg;base64,'+{drink.image}}" alt="americano" class="rounded-lg h-44 w-full object-cover">
-                    <div th:text="${drink.name}" class="w-full flex justify-center text-lg"></div>
+                <div th:each="drink: ${drinks}" th:if="${drink.category_id == category.id}" th:id="${drink.id}" class="drink rounded-lg bg-white hover:bg-black duration-200 hover:text-white">
+                    <img th:src="*{'data:image/jpeg;base64,'+{drink.image}}" alt="americano" th:id="${drink.id}" class="rounded-lg h-44 w-full object-cover">
+                    <div th:text="${drink.name}" class="w-full flex justify-center text-lg" th:id="${drink.id}"></div>
                 </div>
             </div>
         </div>
@@ -64,14 +64,24 @@
                 <h1 class="text-3xl w-full flex justify-center p-3">Order information</h1>
                 <div class="border border-gray-400 my-2"></div>
                 <table class="w-full">
+                    <thead>
+                        <tr class="w-full grid grid-cols-6">
+                            <th class="flex justify-start" scope="row">ID</th>
+                            <th class="flex justify-start">Name</th>
+                            <th class="flex justify-start">Size</th>
+                            <th class="flex justify-start">Amount</th>
+                            <th class="flex justify-start">Price</th>
+                            <th class="flex justify-start">Action</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                      <tr class="w-full flex justify-between items-center border-b-2 border-gray-300">
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td><input class="w-10" type="number" step="1"></td>
-                        <td>2.3</td>
-                        <td class="w-fit">
+                      <tr th:each="order: ${allOrders}" class="w-full grid grid-cols-6">
+                        <th th:text="${order.getDrink_order().getId}" class="flex justify-start" scope="row"></th>
+                        <td th:text="${order.getDrink().getName()}" class="flex justify-start"></td>
+                        <td th:text="${order.getSize().getName()}" class="flex justify-start"></td>
+                        <td th:text="${order.getDrink_order().getAmount()}" class="flex justify-start"></td>
+                        <td th:text="${order.getDrink().getPrice()}" class="flex justify-start"></td>
+                        <td  class="flex justify-start">
                             <button class="rounded-md p-1 m-1 text-sm text-white bg-blue-500">
                                 Edit
                             </button>
@@ -95,29 +105,25 @@
 		<!-- Form content -->
 		<div class="popup-form-content bg-white p-4 rounded w-1/2">
 			<h2 class="text-lg font-bold mb-2">Customize Your Order</h2>
-			<form>
+			<form method="POST" th:object="${order}" th:action="@{/save_order}">
+                <input th:field="*{drink_id}" id="sDrinkId" type="number" class="hidden">
 				<div class="mb-4">
 					<label class="block text-gray-700 font-bold mb-2" for="size">Size:</label>
-					<select class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="size">
-						<option value="small">Small</option>
-						<option value="medium">Medium</option>
-						<option value="large">Large</option>
+					<select th:field="*{size_id}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="size">
+						<option th:each="size: ${sizes}" th:text="${size.name}" th:value="${size.id}"></option>
 					</select>
 				</div>
 				<div class="mb-4">
 					<label class="block text-gray-700 font-bold mb-2" for="flavor">Flavor:</label>
 					<div class="">
 						<div class="mr-4">
-							<input type="checkbox" id="cream" name="cream" value="cream">
+							<input th:field="*{addon_ids}" type="checkbox" id="cream" name="cream" th:value="${cream.id}">
 							<label class="ml-2" for="cream">Cream</label>
 						</div>
 						<div class="mb-4">
                             <label class="block text-gray-700 font-bold mb-2" for="sugar">Sugar:</label>
-                            <select class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="sugar">
-                                <option value="20%">20%</option>
-                                <option value="50%">50%</option>
-                                <option value="70%">70%</option>
-                                <option value="100%">100%</option>
+                            <select th:field="*{addon_ids}" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="sugar">
+                                <option th:each="sugar: ${sugars}" th:text="${sugar.value + '%'}" th:value="${sugar.id}"></option>
                             </select>
 						</div>
 
@@ -125,12 +131,8 @@
 				</div>
 				<div class="mb-4">
 					<div class="mb-4">
-						<label class="block text-gray-700 font-bold mb-2" for="zone">Zone:</label>
-						<select class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zone">
-							<option value="A">A</option>
-							<option value="B">B</option>
-							<option value="C">C</option>
-						</select>
+						<label class="block text-gray-700 font-bold mb-2" for="amount">Amount:</label>
+                        <input th:field="*{amount}" type="number" id="amount" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
 					</div>
 					<div class="flex justify-end">
 						<button type="button" onclick="closeForm()" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mr-4">Cancel</button>
@@ -171,8 +173,8 @@
         </div>
     </div>
     <script>
+        // category part
         const buttons = document.getElementsByClassName("category");
-
         const buttonPressed = e => {
             let catID = e.target.id;  // Get ID of Clicked Element
 
@@ -187,12 +189,22 @@
             }
             document.getElementById("dcontent" + catID).style.display = "grid";
         }
-
         for (let button of buttons) {
             button.addEventListener("click", buttonPressed);
         }
-
         buttons[0].click();
+
+        // select drink part
+        const drinks = document.getElementsByClassName("drink");
+        const drinkSelected = e => {
+            let drinkID = e.target.id;  // Get ID of Clicked Element
+            console.log(drinkID);
+            document.getElementById("sDrinkId").value = drinkID+"";
+            openForm()
+        }
+        for (let drink of drinks) {
+            drink.addEventListener("click", drinkSelected);
+        }
 
         /* Function to open the pop-up form */
         function openForm() {
