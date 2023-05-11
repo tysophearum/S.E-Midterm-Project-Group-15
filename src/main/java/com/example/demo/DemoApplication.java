@@ -6,10 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.model.Addons;
-import com.example.demo.model.Drink_size;
+import com.example.demo.model.Product_size;
 import com.example.demo.repository.AddonsRepository;
 // import com.example.demo.repository.DrinkRepository;
-import com.example.demo.repository.DrinkSizeRepository;
+import com.example.demo.repository.ProductSizeRepository;
 // import com.example.demo.service.DrinkSizeService;
 
 @SpringBootApplication
@@ -20,21 +20,21 @@ public class DemoApplication implements CommandLineRunner {
 	}
 
 	@Autowired
-	private DrinkSizeRepository drinkSizeRepository;
+	private ProductSizeRepository productSizeRepository;
 
 	@Autowired
 	private AddonsRepository addonsRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
-		if(drinkSizeRepository.count() == 0){
-			Drink_size drink_size_small = new Drink_size("small", (float) 0);
-			Drink_size drink_size_medium = new Drink_size("medium", (float) 0.25);
-			Drink_size drink_size_large = new Drink_size("large", (float) 0.5);
+		if(productSizeRepository.count() == 0){
+			Product_size product_size_small = new Product_size("small", (float) 0);
+			Product_size product_size_medium = new Product_size("medium", (float) 0.25);
+			Product_size product_size_large = new Product_size("large", (float) 0.5);
 			
-			drinkSizeRepository.save(drink_size_small);
-			drinkSizeRepository.save(drink_size_medium);
-			drinkSizeRepository.save(drink_size_large);
+			productSizeRepository.save(product_size_small);
+			productSizeRepository.save(product_size_medium);
+			productSizeRepository.save(product_size_large);
 			
 		}
 

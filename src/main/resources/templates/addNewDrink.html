@@ -222,25 +222,33 @@ input{
 </div>
 
 <!-- category form -->
-<div id="newCat" onclick="openCal()" class="hidden fixed top-0 left-0 w-full h-full  bg-[rgba(0,0,0,0.4)]">
+<div id="newCat" class="hidden fixed top-0 left-0 w-full h-full  bg-[rgba(0,0,0,0.4)]">
   <div class="h-[100vh] flex justify-center">
     <div class="flex justify-center item-center w-1/2">
       <form class="wrapper" th:action="@{/new_drink/save_category}" method="POST">
         <h2>New Category</h2>
         <div class="border"></div>
-        <div class="content">
+        <div class="content flex items-center">
             <label for="#">Category code :</label>
             <input name="code" type="text" placeholder="code of ctegory">
         </div>
-        <div class="content">
+        <div class="content flex items-center">
             <label for="#">Category name :</label>
             <input name="name" type="text" placeholder="name of ctegory">
         </div>
-        <div class="btn">
-            <button type="submit" >Ok</button>
-            <button onclick="closeCal()">Cancel</button>
+
+        <div class="flex items-center">
+          <input type="radio" id="drink" name="type" value="drink">
+          <label for="drink">drink</label>
+          <input type="radio" id="food" name="type" value="food">
+          <label for="food">food</label><br>
         </div>
-      </form>
+
+        <div class="btn flex">
+            <button class="bg-[#385723] text-white" type="submit" >Ok</button>
+            <div onclick="closeCal()" class="bg-[#595959] text-white cursor-pointer w-24 h-6 rounded flex items-center justify-center">Cancel</div>
+        </div>
+    </form>
     </div>
   </div>
 </div>

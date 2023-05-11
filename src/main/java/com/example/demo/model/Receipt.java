@@ -15,7 +15,7 @@ public class Receipt {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer incoice_id;
+    private Integer invoice_id;
 
     private Float cash_received;
 
@@ -32,12 +32,12 @@ public class Receipt {
         this.id = id;
     }
 
-    public Integer getIncoice_id() {
-        return this.incoice_id;
+    public Integer getInvoice_id() {
+        return this.invoice_id;
     }
 
-    public void setIncoice_id(Integer incoice_id) {
-        this.incoice_id = incoice_id;
+    public void setInvoice_id(Integer invoice_id) {
+        this.invoice_id = invoice_id;
     }
 
     public Float getCash_received() {
