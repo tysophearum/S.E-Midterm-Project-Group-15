@@ -29,7 +29,7 @@
                 <div class="h-14 operator bg-gray-50 text-white p-2 rounded"></div>
                 <button onclick="appendNumber('0')" class="h-14 number bg-gray-200 p-2 rounded">0</button>
                 <button onclick="appendNumber('.')" class="h-14 operator bg-blue-500 text-white p-2 rounded">.</button>
-                <form action="#" th:action="@{/check/save_receipt}" method="post" th:object="${receipt}">
+                <form action="#" th:action="@{/receipt/save}" method="post" th:object="${receipt}">
                     <input type="number" th:field="*{invoice_id}" th:value="${receipt.invoice_id}" class="hidden">
                     <input id="cash_change" type="number" step="0.01" th:field="*{cash_change}" class="hidden">
                     <input id="cash_received" type="number" th:field="*{cash_received}" class="hidden">

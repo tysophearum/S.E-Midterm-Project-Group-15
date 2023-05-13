@@ -65,7 +65,7 @@
     </style>
 </head>
 <body>
-    <form class="wrapper" th:action="@{/new_drink/save_category}" method="POST">
+    <form class="wrapper" th:action="@{/product_management/save_new_category}" method="POST">
         <h2>New Category</h2>
         <div class="border"></div>
         <div class="content flex items-center">
@@ -78,7 +78,7 @@
         </div>
 
         <div class="flex items-center">
-          <input type="radio" id="drink" name="type" value="drink">
+          <input type="radio" id="drink" name="type" value="drink" checked>
           <label for="drink">drink</label>
           <input type="radio" id="food" name="type" value="food">
           <label for="food">food</label><br>
@@ -86,7 +86,7 @@
 
         <div class="btn">
             <button type="submit" >Ok</button>
-            <span class="cancel">Cancel</span>
+            <a th:href="@{/product_management/drink}" class="cancel">Cancel</a>
         </div>
     </form>
 </body>

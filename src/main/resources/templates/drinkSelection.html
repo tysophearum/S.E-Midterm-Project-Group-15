@@ -54,7 +54,8 @@
             <div class="border border-gray-400 my-2"></div>
             <div th:each="category: ${categories}" th:id="${'dcontent' + category.id}" class="grid-cols-3 gap-2 hidden dcontent">
                 <div th:each="drink: ${drinks}" th:if="${drink.category_id == category.id}" th:id="${drink.id}" class="drink rounded-lg bg-white hover:bg-black duration-200 hover:text-white">
-                    <img th:src="*{'data:image/jpeg;base64,'+{drink.image}}" alt="americano" th:id="${drink.id}" class="rounded-lg h-44 w-full object-cover">
+                    <img src="data:image/jpeg;base64," th:attrappend="src=${drink.image}" alt="americano" th:id="${drink.id}" class="rounded-lg h-44 w-full object-cover">
+                    <!-- <img src="data:image/jpeg;base64," th:attrappend="src=${selectedDrink.image}"  alt="coffee" width="50%"> -->
                     <div th:text="${drink.name}" class="w-full flex justify-center text-lg" th:id="${drink.id}"></div>
                 </div>
             </div>
@@ -82,7 +83,7 @@
                         <td th:text="${order.getProduct_order().getAmount()}" class="flex justify-start"></td>
                         <td th:text="${order.getOrderPrice()}" class="flex justify-start"></td>
                         <td  class="flex justify-start">
-                            <a th:href="@{/list_drink/delete/{id} (id=${order.getProduct_order().getId()})}" class="rounded-md p-1 m-1 text-sm text-white bg-red-600">
+                            <a th:href="@{/product_selection/delete_order/{id} (id=${order.getProduct_order().getId()})}" class="rounded-md p-1 m-1 text-sm text-white bg-red-600">
                                 Delete
                             </a>
                         </td>
@@ -91,7 +92,7 @@
                 </table>
             </div>
             <div class="flex justify-end">
-                <a class="rounded-md p-2 m-1 text-white bg-green-700" th:href="@{/checkout/table_selection}">
+                <a class="rounded-md p-2 m-1 text-white bg-green-700" th:href="@{/table_selection}">
                     Check Out
                 </a>
             </div>

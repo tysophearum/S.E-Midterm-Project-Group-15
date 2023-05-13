@@ -1,266 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>cashier information</title>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <link rel="stylesheet" href="'./asset/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cashier information</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="'./asset/style.css">
 </head>
-
 <body>
     <div class="m-auto mt-5 border border-black w-3/4 h-[600px]">
         <ul class="grid grid-cols-6">
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewCashier">New Cashier</a></li>
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewDrinks">New Drinks</a></li>
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewFood">New Food</a></li>
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewCategory">New category</a></li>
+            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a th:href="@{/user_management/add_new_user}" href="#NewCashier">New Cashier</a></li>
+            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a th:href="@{/product_management/add_new_product}">New Product</a></li>
+            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a th:href="@{/product_management/add_new_category}">New category</a></li>
             <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 " id="Orderhistory"><a href="#Orderhistory">Order history</a></li>
-            <li class=" text-center p-1 hover:bg-gray-200 "><a href="#ManageTable">Manage Table</a></li>
+            <li class=" text-center p-1 hover:bg-gray-200 "><a th:href="@{/table_management}">Manage Table</a></li>
         </ul>
         <div class="container border-t border-black">
             <div class="left">
                 <ul class="list flex pl-10 gap-2 pt-1 bg-gray-300">
-                    <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100" onclick="openMenu(this, 'Cashiers')" id="defaultOpen">
+                    <li class="tab border-2 border-t-sky-400 border-x-sky-400 bg-slate-400 rounded-t-lg p-1 hover:bg-gray-100">
                         <a href="#Cashiers">Cashiers</a>
                     </li>
-                    <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100" onclick="openMenu(this, 'Drinks')">
-                        <a href="#Drinks">Drinks</a>
+                    <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100">
+                        <a th:href="@{/product_management/drink}">Drinks</a>
                     </li>
-                    <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100" onclick="openMenu(this, 'Foods')">
-                        <a href="#Foods">Foods</a>
+                    <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100">
+                        <a th:href="@{/product_management/food}">Foods</a>
                     </li>
                 </ul>
-                <div class="tabcontent" id="Cashiers">
-                    <div class="grid grid-cols-2">
-                        <div>
-                            <div class="grid grid-cols-4 m-3 p-3 bg-purple-200">
-                                <p></p>
-                                <p>Cashier Name</p>
-                                <p>Login</p>
-                                <p class="pl-5">Action</p>
-                            </div>
-                            <div class="list-name block ">
-                                <div class="grid grid-cols-3 pl-5">
-                                    <p>1</p>
-                                    <p>Khema</p>
-                                    <p>khema</p>
-                                    <div class="flex">
-                                        <button class="edit pr-5">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                            </svg>
-                                        </button>
-                                        <button class="delete">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                            </svg>
-                                        </button>  
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-4 pl-5">
-                                    <p>2</p>
-                                    <p>Admin</p>
-                                    <p>Admin a</p>
-                                    <p class="flex gap-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                        </svg>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right border-l border-black pl-5 bg-sky-100 h-[525px]" id="Cashiers">
-                            <h1 class="font-semibold text-center text-2xl">Cashier Information</h1>
-                            <div class="flex items-center m-5 gap-[90px]">
-                                <img src="https://cdn-icons-png.flaticon.com/512/206/206874.png" alt="cashier" width="40%">
-                                <div>
-                                    <p>Name: khema </p>
-                                    <P>Age:20</P>
-                                    <p>Sex: female</p>
-                                    <p>Hired Day:25-05-2022 </p>
-                                    <p>Served:12-06-2022</p>
-                                    <p>Login:khema</p>
-                                    <p>Password:123</p>
-                                    <p>last login:23-09-2022</p>
-                                </div>
-                            </div>
-                            <p>Last Login:25-5-2022 8:00</p>
-                            <p>Last served:99</p>
-                        </div>
-                    </div>
-                </div>
             </div>
             <!-- drink  -->
             <div class="tabcontent" id="Drinks">
                 <div class="grid grid-cols-2">
                     <div class="left">
-                        <div class="grid grid-cols-5 m-3 p-3 bg-purple-200">
+                        <div class="grid grid-cols-4 m-3 p-3 bg-purple-200">
                             <p>ID</p>
-                            <p>Drink Code</p>
-                            <p>Drink Name</p>
-                            <p>Price($)</p>
+                            <p>Cashier</p>
+                            <p>Username</p>
                             <p class="pl-5">Action</p>
                         </div>
                         <div class="list-name block ">
-                            <div th:each="drink: ${drinks}" class="grid grid-cols-5 pl-5 hover:bg-gray-300">
-                                <p th:text="${drink.id}"></p>
-                                <p th:text="${drink.code}"></p>
-                                <p th:text="${drink.name}"></p>
-                                <p th:text="${drink.price}"></p>
-                                <p class="flex gap-5">
-                                    <a th:href="@{/drink_management/edit/{id} (id=${drink.id})}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:bg-blue-400 rounded">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                        </svg>
-                                    </a>
-                                    <a th:href="@{/drink_management/delete/{id} (id=${drink.id})}">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:bg-red-400 rounded">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                        </svg>
-                                    </a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Drink right side info     -->
-                    <div class="right border-l border-black pl-5 bg-sky-100 h-[525px]" id="Drinks">
-                            <h1 class="font-semibold text-center text-2xl">Drink Information</h1>
-                            <div class="flex items-center m-5 gap-[60px]">
-                                    <img src="https://hips.hearstapps.com/hmg-prod/images/directly-above-shot-of-cappuccino-served-on-table-royalty-free-image-769817517-1564602749.jpg?resize=1200:*"
-                                            alt="coffee" width="50%">
-                                    <div>
-                                            <p>Code: DH001 </p>
-                                            <P>Name: Espresso</P>
-                                            <p>Category:Hot Drinks</p>
-                                            <p>Price: 2.1$</p>
-                                            <p>Orders: 99times</p>
-                                            <p></p>
-                                            <p>Note:</p>
-                                            <p>Good for person who likes High coffee compression and for up the whole night</p>
-                                    </div>
-                            </div>
-                            <p>Last order date:30/09/2022 8:00</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Foods  -->
-            <div class="tabcontent" id="Foods">
-                <div class="grid grid-cols-2">
-                    <div class="left">
-                        <div class="grid grid-cols-5 m-3 p-3 bg-purple-200">
-                            <p></p>
-                            <p>Food Code</p>
-                            <p>Food Name</p>
-                            <p>Price($)</p>
-                            <p class="pl-5">Action</p>
-                        </div>
-                        <div class="list-name block ">
-                            <div class="grid grid-cols-5 pl-5">
-                                <p>1</p>
-                                <p>DF001</p>
-                                <p>French Fries</p>
-                                <p>1.5</p>
-                                <p class="flex gap-5">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
-                                    </svg>
-                                </p>
-                            </div>
-                            <div class="grid grid-cols-5 pl-5">
-                                <p>2</p>
-                                <p>DF002</p>
-                                <p>Sandwich</p>
-                                <p>1.8</p>
+                            <div th:each="user: ${users}" class="grid grid-cols-4 pl-5 hover:bg-gray-300">
+                                <p th:text="${user.id}"></p>
+                                <a th:href="@{/user_management/{id} (id = ${user.id})}" th:text="${user.first_name + ' ' + user.last_name}" class="underline"></a>
+                                <p th:text="${user.username}"></p>
                                 <div class="flex">
-                                    <button class="edit pr-5">
+                                    <a th:href="@{/user_management/edit/{id} (id=${user.id})}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                         </svg>
-                                    </button>
-                                    <button class="delete">
+                                    </a>
+                                    <a th:href="@{/user_management/delete/{id} (id=${user.id})}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                         </svg>
-                                    </button>  
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        
-                    <div class="right border-l border-black pl-5 bg-sky-100 h-[525px]" id="Foods">
-                        <h1 class="font-semibold text-center text-2xl">Food Information</h1>
-                        <div class="items-center m-5 gap-[90px]">
-                            <img src="https://st.depositphotos.com/1031681/4804/i/950/depositphotos_48041661-stock-photo-grilled-sandwich-with-ham-cheese.jpg" alt="sandwich" width="100%">
-                            <div class="grid grid-cols-2">
-                                <p>Code: DF001 </p>
-                                <P>Name: French Fries</P>
-                                <p>Category: Foods</p>
-                                <p>Price: 1.5$</p>
+                    <div class="right border-l border-black pl-5 bg-sky-100 h-[525px]" id="Drinks">
+                        <h1 class="font-semibold text-center text-2xl">Cashier Information</h1>
+                        <!-- <div class="flex items-center m-5 gap-[60px]">
+                            <img th:src="*{'data:image/jpeg;base64,'+{selectedDrink.image}}" alt="coffee" width="50%">
+                            <div>
+                                <p th:text="${selectedDrink.code}"></p>
+                                <P th:text="${selectedDrink.name}"></P>
+                                <p th:text="${selectedCategory.name}"></p>
+                                <p th:text="${selectedDrink.price}"></p>
                                 <p>Orders: 99times</p>
+                                <p></p>
+                                <p>Note:</p>
+                                <p th:text="${selectedDrink.note}">Good for person who likes High coffee compression and for up the whole night</p>
                             </div>
                         </div>
+                        <p>Last order date:30/09/2022 8:00</p> -->
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-        <!-- orderhistory -->
-        <form class="hidden bg-white border-black border-2 absolute top-1/4 left-2/4 -translate-x-2/4 -translate-y-2/4 p-6 h-[300px] mt-10" id="popup-page" method="POST">
-            <div>
-                <h1 class="text-2xl">Histories</h1>
-                <div class="orderhistory">
-                    <div class="grid grid-cols-5 m-3 p-3 bg-purple-200">
-                        <p></p>
-                        <p>Order number</p>
-                        <p>Table</p>
-                        <p>Price($)</p>
-                        <p class="pl-5">Date</p>
-                    </div>
-                <div class="list-name block ">
-                    <div class="grid grid-cols-5 pl-5">
-                        <p>1</p>
-                        <p>N00001</p>
-                        <p>01</p>
-                        <p>2.3$</p>
-                        <p>02/05/2023 08:30</p>
-                    </div>
-                    <div class="grid grid-cols-5 pl-5">
-                        <p>2</p>
-                        <p>N00002</p>
-                        <p>02</p>
-                        <p>2.1$</p>
-                        <p>02/05/2023 08:30</p>
-                    </div>
+    <form class="hidden bg-white border-black border-2 absolute top-1/4 left-2/4 -translate-x-2/4 -translate-y-2/4 p-6 h-[300px] mt-10" id="popup-page" method="POST">
+        <div>
+            <h1 class="text-2xl">Histories</h1>
+            <div class="orderhistory">
+                <div class="grid grid-cols-5 m-3 p-3 bg-purple-200">
+                    <p></p>
+                    <p>Order number</p>
+                    <p>Table</p>
+                    <p>Price($)</p>
+                    <p class="pl-5">Date</p>
+                </div>
+            <div class="list-name block ">
+                <div class="grid grid-cols-5 pl-5">
+                    <p>1</p>
+                    <p>N00001</p>
+                    <p>01</p>
+                    <p>2.3$</p>
+                    <p>02/05/2023 08:30</p>
+                </div>
+                <div class="grid grid-cols-5 pl-5">
+                    <p>2</p>
+                    <p>N00002</p>
+                    <p>02</p>
+                    <p>2.1$</p>
+                    <p>02/05/2023 08:30</p>
                 </div>
             </div>
-        </form>
+        </div>
+    </form>
     <script>
-        function openMenu(elmnt, pagename) {
-            var i, tabcontent, tab;
-
-            tabcontent = document.getElementsByClassName("tabcontent");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }//hide content
-            tab = document.getElementsByClassName("tab");
-            for (i = 0; i < tab.length; i++) {
-                tab[i].className = tab[i].className.replace("active");
-            }
-            document.getElementById(pagename).style.display = "block";
-            elmnt.currentTarget.className += "active";
-        }
-        document.getElementById("defaultOpen").click();
         //pop up page
         let popupPage = document.getElementById("popup-page"); //form
         let historyBtn = document.getElementById("Orderhistory");
@@ -274,5 +125,4 @@
         })
     </script>
 </body>
-
 </html>

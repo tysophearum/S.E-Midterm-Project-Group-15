@@ -64,6 +64,11 @@ public class CurrentProductOrderImpl implements CurrentProductOrderService {
         }
         return totalPrice;
     }
+
+    @Override
+    public void deleteAllOrders() {
+        currentDrinkOrderRepository.deleteAll();;
+    }
     
     
 }

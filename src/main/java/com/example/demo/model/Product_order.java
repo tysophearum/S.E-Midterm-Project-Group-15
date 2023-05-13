@@ -19,6 +19,18 @@ public class Product_order {
 
     private Integer amount;
 
+
+    public Product_order() {
+    }
+
+    public Product_order(Integer product_id, String addon_ids, Integer size_id, Integer amount) {
+        this.product_id = product_id;
+        this.addon_ids = addon_ids;
+        this.size_id = size_id;
+        this.amount = amount;
+    }
+
+
     public Integer getId() {
         return this.id;
     }

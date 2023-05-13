@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add edit cashier</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            margin: auto;
+            border-radius: 5px;
+            background-color: #dadada;
+            width: 600px;
+            height: 600px;
+            border: 2px solid black;
+        }
+        h3{
+            display: flex;
+            justify-content: center;
+            color: black;
+            
+        }
+        .border{
+            border-bottom: 2px solid black;
+        }
+        .btn{
+            margin-top: 10px;
+            margin-left: 20px;
+        }
+        button{
+            color:whitesmoke;
+            background-color: blue;
+            font-size: 1.1rem;
+            width: 100px;
+            border-radius: 4px;
+        }
+        .cancel{
+            color:whitesmoke;
+            background-color: blue;
+            font-size: 1.1rem;
+            width: 100px;
+            border-radius: 4px;
+            padding: 3px 15px;
+            border: 1px gray solid;
+            background-color: #d70505;
+        }
+        .content{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80%;
+        }
+        .content_left{
+            /* background-color: antiquewhite; */
+            /* width: 300px; */
+        }
+        /* input{
+            margin-left:100px;
+        } */
+        .content_right{
+            margin-left: 20px;
+            width: 250px;
+            height: 250px;
+            background-color: rgb(230, 248, 248);
+            border-radius: 5px;
+        }
+        input{
+            width: 280%;
+            height: 20px;
+            border-radius: 4px;
+        }
+        select{
+            width: 176px;
+            height: 25px;
+            border-radius: 4px;
+        }
+        .Input{
+            display: flex;
+            justify-content: space-between;
+        }
+        label{
+            color: #2B5876;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header">
+            <h3>New Cashier</h3>
+        </div>
+        <div class="border"></div>
+        <div class="content">
+            <form class="content_left" method="POST" th:object="${user}" enctype="multipart/form-data" th:action="@{/user_management/save_user}">
+                <div class="Input">
+                    <label for="#">First name :</label>
+                    <input th:field="*{first_name}" type="text" placeholder="Input first name">
+                </div><br>
+                <div class="Input">
+                    <label for="#">Last name :</label>
+                    <input th:field="*{last_name}" type="text" placeholder="Input last name">
+                </div><br>
+                
+                <div class="Input">
+                    <label for="#">Sex  :</label>
+                    <select th:field="*{sex}" name="selection">
+                        <option value="select">Select Your Gender</option>
+                        <option value="male">Male</option>
+                        <option value="Femal">Femal</option>
+                    </select>
+                </div><br>
+                <div class="Input">
+                    <label name="dob" for="#">Date of Birth :</label>
+                    <input name="dob" type="date" >
+                </div><br>
+                <div class="Input">
+                    <label for="#">Username :</label>
+                    <input th:field="*{username}" type="text" placeholder="Input username">
+                </div><br>
+                <div class="Input">
+                    <label for="#">Password : </label>
+                    <input th:field="*{password}" type="password" placeholder="Input password">
+                </div><br>
+                <div class="Input">
+                    <label for="#">Photo : </label>
+                    <input name="file" type="file" placeholder="Input password">
+                </div>
+                <div class="btn">
+                    <button type="submit">Ok</button>
+                    <a th:href="@{/user_management}" class="cancel">Cancel</a>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

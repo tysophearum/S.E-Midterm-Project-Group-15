@@ -11,21 +11,20 @@
 <body>
     <div class="m-auto mt-5 border border-black w-3/4 h-[600px]">
         <ul class="grid grid-cols-6">
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewCashier">New Cashier</a></li>
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewDrinks">New Drinks</a></li>
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewFood">New Food</a></li>
-            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a href="#NewCategory">New category</a></li>
+            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a th:href="@{/user_management/add_new_user}" href="#NewCashier">New Cashier</a></li>
+            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a th:href="@{/product_management/add_new_product}">New Product</a></li>
+            <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 "><a th:href="@{/product_management/add_new_category}">New category</a></li>
             <li class="border-r-2 border-black text-center p-1 hover:bg-gray-200 " id="Orderhistory"><a href="#Orderhistory">Order history</a></li>
-            <li class=" text-center p-1 hover:bg-gray-200 "><a href="#ManageTable">Manage Table</a></li>
+            <li class=" text-center p-1 hover:bg-gray-200 "><a th:href="@{/table_management}">Manage Table</a></li>
         </ul>
         <div class="container border-t border-black">
             <div class="left">
                 <ul class="list flex pl-10 gap-2 pt-1 bg-gray-300">
                     <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100">
-                        <a href="#Cashiers">Cashiers</a>
+                        <a th:href="@{/user_management}">Cashiers</a>
                     </li>
                     <li class="tab border-2 border-t-sky-400 border-x-sky-400 rounded-t-lg p-1 hover:bg-gray-100">
-                        <a href="#Drinks">Drinks</a>
+                        <a th:href="@{/product_management/drink}">Drinks</a>
                     </li>
                     <li class="tab border-2 border-t-sky-400 border-x-sky-400 bg-slate-400 rounded-t-lg p-1 hover:bg-gray-100">
                         <a href="#Foods">Foods</a>
@@ -38,8 +37,8 @@
                     <div class="left">
                         <div class="grid grid-cols-5 m-3 p-3 bg-purple-200">
                             <p>ID</p>
-                            <p>Drink Code</p>
-                            <p>Drink Name</p>
+                            <p>Food Code</p>
+                            <p>Food Name</p>
                             <p>Price($)</p>
                             <p class="pl-5">Action</p>
                         </div>
@@ -47,15 +46,15 @@
                             <div th:each="drink: ${drinks}" class="grid grid-cols-5 pl-5 hover:bg-gray-300">
                                 <p th:text="${drink.id}"></p>
                                 <p th:text="${drink.code}"></p>
-                                <a th:href="@{/food_management/{id} (id = ${drink.id})}" th:text="${drink.name}" class="underline"></a>
+                                <a th:href="@{/product_management/food/{id} (id = ${drink.id})}" th:text="${drink.name}" class="underline"></a>
                                 <p th:text="${drink.price}"></p>
                                 <div class="flex">
-                                    <a th:href="@{/drink_management/edit/{id} (id=${drink.id})}">
+                                    <a th:href="@{/product_management/edit/{id} (id=${drink.id})}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                                         </svg>
                                     </a>
-                                    <a th:href="@{/drink_management/delete/{id} (id=${drink.id})}">
+                                    <a th:href="@{/product_management/delete/{id} (id=${drink.id})}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                                         </svg>
@@ -65,7 +64,7 @@
                         </div>
                     </div>
                     <div class="right border-l border-black pl-5 bg-sky-100 h-[525px]" id="Drinks">
-                        <h1 class="font-semibold text-center text-2xl">Drink Information</h1>
+                        <h1 class="font-semibold text-center text-2xl">Food Information</h1>
                         <!-- <div class="flex items-center m-5 gap-[60px]">
                             <img th:src="*{'data:image/jpeg;base64,'+{selectedDrink.image}}" alt="coffee" width="50%">
                             <div>

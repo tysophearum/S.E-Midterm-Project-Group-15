@@ -30,10 +30,10 @@ public class TableController {
         return "tableManagement";
     }
     
-    @GetMapping("/checkout/table_selection")
+    @GetMapping("/table_selection")
     public String selectTable(Model model){
         Invoice newInvoice = new Invoice();
-        newInvoice.setDrink_order_ids(currentDrinkOrderService.getAllOrderIds());
+        newInvoice.setProduct_order_ids(currentDrinkOrderService.getAllOrderIds());
         newInvoice.setNumber(invoiceService.getNewInvoiceNumber());
         newInvoice.setPrice(currentDrinkOrderService.getTotalPrice());
         model.addAttribute("invoice", newInvoice);
@@ -44,12 +44,12 @@ public class TableController {
     @PostMapping("/table_management/set_number_of_table")
     public String setTableAmount(@RequestParam("tableAmount") Integer tableAmount){
         tableService.setNewTableAmount(tableAmount);
-        return "redirect:/table_management";
+        return "redirect:/product_management/drink";
     }
 
-    @PostMapping("/tableAcailebility/edit")
+    @PostMapping("/tableAvailebility/edit")
     public String setTableAvaileble(@RequestParam("tableID") Integer tableID){
         tableService.setTableAvaileble(tableID);
-        return "redirect:/checkout/table_selection";
+        return "redirect:/table_selection";
     }
 }

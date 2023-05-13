@@ -18,6 +18,7 @@
             <input class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" th:value="${tableAmount}" id="number-of-tables" name="tableAmount" type="number" placeholder="Enter number of tables">
             </div>
             <div class="flex justify-end">
+                <a th:href="@{/product_management/drink}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center mr-3">Cancel</a>
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">Submit</button>
             </div>
         </form>

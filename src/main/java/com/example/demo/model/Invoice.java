@@ -17,7 +17,7 @@ public class Invoice {
 
     private Integer number;
 
-    private String drink_order_ids;
+    private String product_order_ids;
 
     private Integer table_id;
 
@@ -44,13 +44,14 @@ public class Invoice {
         this.number = number;
     }
 
-    public String getDrink_order_ids() {
-        return this.drink_order_ids;
+    public String getProduct_order_ids() {
+        return this.product_order_ids;
     }
 
-    public void setDrink_order_ids(String drink_order_ids) {
-        this.drink_order_ids = drink_order_ids;
+    public void setProduct_order_ids(String product_order_ids) {
+        this.product_order_ids = product_order_ids;
     }
+    
 
     public Integer getTable_id() {
         return this.table_id;

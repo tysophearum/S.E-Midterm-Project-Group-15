@@ -25,12 +25,26 @@ public class OrderController {
     @PostMapping("/save_order")
     public String saveOrder(@ModelAttribute("order") Current_product_order drink_order){
         currentDrinkOrderService.saveOrder(drink_order);
-        return "redirect:/list_drink";
+        return "redirect:/product_selection";
     }
 
-    @GetMapping("/list_drink/delete/{id}")
+    @GetMapping("/product_selection/delete_order/{id}")
     public String deleteOrder(@PathVariable Integer id){
         currentDrinkOrderService.deleteOrder(id);
-        return "redirect:/list_drink";
+        return "redirect:/product_selection";
+    }
+
+    @GetMapping("/clear_current_order")
+    public String clearCurrentOrder(){
+        for(Current_product_order cOrder: currentDrinkOrderService.getAllOrders()){
+            String addon_ids = cOrder.getAddon_ids();
+            Integer amount = cOrder.getAmount();
+            Integer product_id = cOrder.getProduct_id();
+            Integer size_id = cOrder.getSize_id();
+            Product_order product_order = new Product_order(product_id, addon_ids, size_id, amount);
+            drinkOrderService.saveOrder(product_order);
+        }
+        currentDrinkOrderService.deleteAllOrders();
+        return "redirect:/product_selection";
     }
 }

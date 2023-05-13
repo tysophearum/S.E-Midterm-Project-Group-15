@@ -24,7 +24,7 @@ public class Product {
     private String note;
 
     @Lob
-    @Column(nullable = false, length = 8192)
+    @Column(nullable = false, length = 2147483647)
     private String image;
 
     public Integer getId() {
@@ -58,6 +58,7 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+    
 
     public String getCode() {
         return this.code;

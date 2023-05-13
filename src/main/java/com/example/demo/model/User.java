@@ -21,14 +21,16 @@ public class User {
 
     private String sex;
 
-    private String username;
-
     private String password;
 
     private Date date_of_birth;
 
+    private String username;
+
+    private String role;
+
     @Lob
-    @Column(nullable = false, length = 8192)
+    @Column(nullable = false, length = 2147483647)
     private String image;
 
     public Integer getId() {
@@ -95,4 +97,20 @@ public class User {
         this.image = image;
     }
 
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean isEmpty(){
+        if(first_name.isEmpty() || last_name.isEmpty() || username.isEmpty() || password.isEmpty() || role.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

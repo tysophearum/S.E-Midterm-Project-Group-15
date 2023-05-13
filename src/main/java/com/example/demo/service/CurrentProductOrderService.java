@@ -11,4 +11,5 @@ public interface CurrentProductOrderService {
     void deleteOrder(Integer id);
     String getAllOrderIds();
     Float getTotalPrice();
+    void deleteAllOrders();
 }

@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -27,102 +28,103 @@ import com.example.demo.service.ProductSizeService;
 
 @Controller
 public class ProductController {
-    private ProductService drinkService;
+    private ProductService productService;
     private CategoryService categoryService;
     private AddonsService addonsService;
-    private ProductSizeService drinkSizeService;
+    private ProductSizeService productSizeService;
     private ProductOrderService drinkOrderService;
-    private CurrentProductOrderService currentDrinkOrderService;
+    private CurrentProductOrderService currentProductOrderService;
 
-    public ProductController(ProductService drinkService, CategoryService categoryService, AddonsService addonsService, ProductSizeService drinkSizeService, ProductOrderService drinkOrderService, CurrentProductOrderService currentDrinkOrderService) {
+    public ProductController(ProductService productService, CategoryService categoryService, AddonsService addonsService, ProductSizeService productSizeService, ProductOrderService drinkOrderService, CurrentProductOrderService currentProductOrderService) {
         super();
-        this.drinkService = drinkService;
+        this.productService = productService;
         this.categoryService = categoryService;
         this.addonsService = addonsService;
-        this.drinkSizeService = drinkSizeService;
+        this.productSizeService = productSizeService;
         this.drinkOrderService = drinkOrderService;
-        this.currentDrinkOrderService = currentDrinkOrderService;
+        this.currentProductOrderService = currentProductOrderService;
     }
 
-    @PostMapping("/new_drink")
-    public String saveDrink(@ModelAttribute("drink") Product drink, @RequestParam("file") MultipartFile file){
-        drinkService.saveProduct(drink, file);
-        return "redirect:/new_drink";
+    @PostMapping("/product_management/add_new_product/save")
+    public String saveProduct(@ModelAttribute("drink") Product drink, @RequestParam("file") MultipartFile file){
+        
+        productService.saveProduct(drink, file);
+        return "redirect:/product_management/drink";
     }
 
-    @GetMapping("/list_drink")
+    @GetMapping("/product_selection")
     public String showDrinks(Model model){
         Current_product_order newOrder = new Current_product_order();
         model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("drinks", drinkService.getAllProducts());
+        model.addAttribute("drinks", productService.getAllProducts());
         model.addAttribute("sugars", addonsService.getSugar());
         model.addAttribute("cream", addonsService.getCream());
-        model.addAttribute("sizes", drinkSizeService.getAllProductSizes());
+        model.addAttribute("sizes", productSizeService.getAllProductSizes());
         model.addAttribute("order", newOrder);
         List<OrderInfo>orderInfos = new ArrayList<OrderInfo>();
-        for (Current_product_order order : currentDrinkOrderService.getAllOrders()){
-            orderInfos.add(new OrderInfo(drinkService.getProductById(order.getProduct_id()), drinkSizeService.getSizeById(order.getSize_id()), currentDrinkOrderService.getOrderById(order.getId())));
+        for (Current_product_order order : currentProductOrderService.getAllOrders()){
+            orderInfos.add(new OrderInfo(productService.getProductById(order.getProduct_id()), productSizeService.getSizeById(order.getSize_id()), currentProductOrderService.getOrderById(order.getId())));
         }
         model.addAttribute("allOrders", orderInfos);
         return "drinkSelection";
     }
 
-    @GetMapping("/drink_management")
+    @GetMapping("/product_management/drink")
     public String listDrink (Model model) {
-        model.addAttribute("drinks", drinkService.getAllDrinks());
+        model.addAttribute("drinks", productService.getAllDrinks());
         return "drinkManagement";
     }
 
-    @GetMapping("/food_management")
+    @GetMapping("/product_management/food")
     public String listFood (Model model) {
-        model.addAttribute("drinks", drinkService.getAllFoods());
+        model.addAttribute("drinks", productService.getAllFoods());
         return "foodManagement";
     }
 
     
 
-    @GetMapping("/drink_management/edit/{id}")
+    @GetMapping("/product_management/edit/{id}")
     public String editDrink(@PathVariable Integer id, Model model){
-        Product updateDrink = drinkService.getProductById(id);
+        Product updateDrink = productService.getProductById(id);
         model.addAttribute("categories", categoryService.getAllCategories());
         model.addAttribute("drink", updateDrink);
         return "editDrink";
     }
 
-    @PostMapping("/drink_management/{id}")
+    @PostMapping("/product_management/edit/save/{id}")
     public String updateDrink (@PathVariable Integer id, @ModelAttribute("drink") Product updatedDrink, Model model, @RequestParam("file") MultipartFile file){
-        Product drink = drinkService.getProductById(id);
+        Product drink = productService.getProductById(id);
         drink.setId(id);
         drink.setCode(updatedDrink.getCode());
         drink.setName(updatedDrink.getName());
         drink.setCategory_id(updatedDrink.getCategory_id());
         drink.setPrice(updatedDrink.getPrice());
         drink.setNote(updatedDrink.getNote());
-        drinkService.saveProduct(drink, file);
-        return "redirect:/drink_management";
+        productService.saveProduct(drink, file);
+        return "redirect:/product_management/drink";
     }
 
-    @GetMapping("/drink_management/delete/{id}")
+    @GetMapping("/product_management/delete/{id}")
     public String deleteDrink (@PathVariable Integer id) {
-        drinkService.deleteProduct(id);
-        return "redirect:/drink_management";
+        productService.deleteProduct(id);
+        return "redirect:/product_management/drink";
     }
 
-    @GetMapping("/drink_management/{id}")
+    @GetMapping("/product_management/drink/{id}")
     public String showDrink(@PathVariable Integer id, Model model){
-        Product selectDrink = drinkService.getProductById(id);
+        Product selectDrink = productService.getProductById(id);
         Product_category category = categoryService.getCateforyById(selectDrink.getCategory_id());
-        model.addAttribute("drinks", drinkService.getAllDrinks());
+        model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("selectedCategory", category);
         model.addAttribute("selectedDrink", selectDrink);
         return "viewDrink";
     }
 
-    @GetMapping("/food_management/{id}")
+    @GetMapping("/product_management/food/{id}")
     public String showFood(@PathVariable Integer id, Model model){
-        Product selectDrink = drinkService.getProductById(id);
+        Product selectDrink = productService.getProductById(id);
         Product_category category = categoryService.getCateforyById(selectDrink.getCategory_id());
-        model.addAttribute("drinks", drinkService.getAllFoods());
+        model.addAttribute("drinks", productService.getAllFoods());
         model.addAttribute("selectedCategory", category);
         model.addAttribute("selectedDrink", selectDrink);
         return "viewFood";

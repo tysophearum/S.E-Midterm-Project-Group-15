@@ -9,27 +9,27 @@ import com.example.demo.model.Product_size;
 
 public class OrderInfo {
     private List<Addons> addonsList;
-    private Product drink;
+    private Product product;
     private Product_size size;
-    private Current_product_order drink_order;
+    private Current_product_order product_order;
     private Float orderPrice;
 
-    public OrderInfo(List<Addons> addonsList, Product drink, Product_size size, Current_product_order drink_order) {
+    public OrderInfo(List<Addons> addonsList, Product product, Product_size size, Current_product_order product_order) {
         this.addonsList = addonsList;
-        this.drink = drink;
+        this.product = product;
         this.size = size;
-        this.drink_order = drink_order;
+        this.product_order = product_order;
     } 
 
-    public OrderInfo(Product drink, Product_size size, Current_product_order drink_order) {
-        this.drink = drink;
+    public OrderInfo(Product product, Product_size size, Current_product_order product_order) {
+        this.product = product;
         this.size = size;
-        this.drink_order = drink_order;
+        this.product_order = product_order;
     }    
     
 
-    public OrderInfo(Product drink, Product_size size) {
-        this.drink = drink;
+    public OrderInfo(Product product, Product_size size) {
+        this.product = product;
         this.size = size;
     }
 
@@ -41,12 +41,12 @@ public class OrderInfo {
         this.addonsList = addonsList;
     }
 
-    public Product getDrink() {
-        return this.drink;
+    public Product getProduct() {
+        return this.product;
     }
 
-    public void setDrink(Product drink) {
-        this.drink = drink;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public Product_size getSize() {
@@ -57,16 +57,16 @@ public class OrderInfo {
         this.size = size;
     }
 
-    public Current_product_order getDrink_order() {
-        return this.drink_order;
+    public Current_product_order getProduct_order() {
+        return this.product_order;
     }
 
-    public void setDrink_order(Current_product_order drink_order) {
-        this.drink_order = drink_order;
+    public void setProduct_order(Current_product_order product_order) {
+        this.product_order = product_order;
     }
 
     public Float getOrderPrice() {
-        orderPrice = drink.getPrice() + size.getPrice();
+        orderPrice = product.getPrice() + size.getPrice();
         return orderPrice;
     }
 }
