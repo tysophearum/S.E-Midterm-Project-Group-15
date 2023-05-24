@@ -1,0 +1,212 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+body{
+    background: url(../image/night-coffee-shop-thumb.jpg);
+    background-size: cover;
+    background-position: center;
+}
+.container{
+    width: 70%;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 8%;
+    display: flex;
+    border-radius: 9px;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+.container{
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+     box-shadow: 0 10px 6px -6px #777;
+}
+.grid{
+    width: 50%;
+    height: 100%;
+    font-family: sans-serif;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    grid-gap: 13px;
+    color: #eee;
+    padding: 10px;
+    cursor: pointer;
+}
+.grid> div {
+    background-color: #FF0000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px;
+    font-size: 25px;
+    border-radius: 5px;
+}
+.grid> .item{
+    background-color: 	#006400;
+}
+.grid> div:hover{
+    background-color: #D2691E;
+}
+.content{
+    width: 50%;
+    height: 100%;
+    /* background-color: #A9E2F5; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+}
+.detail1 h2{
+    margin-bottom: 10%;
+}
+.detail1 p{
+    margin-left: -35%; 
+    padding: 5px;
+}
+.detail2 h2{
+    margin-bottom: 10%;
+}
+.detail2 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail3 h2{
+    margin-bottom: 10%;
+}
+.detail3 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail4 h2{
+    margin-bottom: 10%;
+}
+.detail4 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail5 h2{
+    margin-bottom: 10%;
+}
+.detail5 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail6 h2{
+    margin-bottom: 10%;
+}
+.detail6 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail7 h2{
+    margin-bottom: 10%;
+}
+.detail7 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail8 h2{
+    margin-bottom: 10%;
+}
+.detail8 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail9 h2{
+    margin-bottom: 10%;
+}
+.detail9 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail10 h2{
+    margin-bottom: 10%;
+}
+.detail10 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail11 h2{
+    margin-bottom: 10%;
+}
+.detail11 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail12 h2{
+    margin-bottom: 10%;
+}
+.detail12 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail13 h2{
+    margin-bottom: 10%;
+}
+.detail13 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail14 h2{
+    margin-bottom: 10%;
+}
+.detail14 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail15 h2{
+    margin-bottom: 10%;
+}
+.detail15 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail16 h2{
+    margin-bottom: 10%;
+}
+.detail16 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail17 h2{
+    margin-bottom: 10%;
+}
+.detail17 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail18 h2{
+    margin-bottom: 10%;
+}
+.detail18 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail19 h2{
+    margin-bottom: 10%;
+}
+.detail19 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail20 h2{
+    margin-bottom: 10%;
+}
+.detail20 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail21 h2{
+    margin-bottom: 10%;
+}
+.detail21 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail22 h2{
+    margin-bottom: 10%;
+}
+.detail22 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail23 h2{
+    margin-bottom: 10%;
+}
+.detail23 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail24 h2{
+    margin-bottom: 10%;
+}
+.detail24 p{
+    margin-left: -35%; 
+    padding: 5px;
+}.detail25 h2{
+    margin-bottom: 10%;
+}
+.detail25 p{
+    margin-left: -35%; 
+    padding: 5px;
+}
