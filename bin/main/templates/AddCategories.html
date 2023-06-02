@@ -4,90 +4,106 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories Management</title>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>New Category</title>
     <style>
         body{
-            margin: 0;
-            padding: 0;
-        }
-        .wrapper{
-            margin: auto;
-            width: 600px;
-            border: 2px solid black;
-            height: auto;
-            padding: 30px;
-            background-color: #dadada;
-        }
-        h2{
-            display: flex;
-            justify-content: center;
-        }
-        .border{
-            border-bottom: 2px solid black;
-        }
-        .content{
-            display: flex;
-            margin-top: 10px;
-        }
-        .btn{
-            margin-top: 10px;
-            display: flex;
-        }
-        button{
-            color:whitesmoke;
-            background-color: blue;
-            font-size: 1.1rem;
-            width: 100px;
-            border-radius: 4px;
-        }
-        label{
-            color: #2B5876;
-        }
-        input{
-            width: 170px;
-            height: 20px;
-            border-radius: 5px;
-        }
-        .cancel{
-            color:whitesmoke;
-            background-color: blue;
-            font-size: 1.1rem;
-            width: 100px;
-            border-radius: 4px;
-            height: 25px;
-            border: black solid 1px;
+            --tw-bg-opacity: 1;
+            background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
+        }
+        .wrapper{
+            background-color: white;
+            width: 80%;
+            margin: auto;
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            border-radius: 0.25rem/* 4px */;
+            padding-left: 2rem/* 32px */;
+            padding-right: 2rem/* 32px */;
+            padding-top: 1.5rem/* 24px */;
+            padding-bottom: 1.5rem/* 24px */;
+        }
+        h1{
+            background-color: #044468;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+            color: white;
+            --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+            border-radius: 0.25rem/* 4px */;
+        }
+        .container{
+            margin-top: 40px;
+            padding-bottom: 40px;
+        }
+        button{
+            width: 80px;
+        }
+        #radio{
+          width: 20%;
+          display: flex;
+          justify-content: space-between;
         }
     </style>
 </head>
 <body>
-    <form class="wrapper" th:action="@{/product_management/save_new_category}" method="POST">
-        <h2>New Category</h2>
-        <div class="border"></div>
-        <div class="content flex items-center">
-            <label for="#">Category code :</label>
-            <input name="code" type="text" placeholder="code of ctegory">
+    <div class="wrapper">
+        <div class="header">
+            <h1>New Category</h1>
         </div>
-        <div class="content flex items-center">
-            <label for="#">Category name :</label>
-            <input name="name" type="text" placeholder="name of ctegory">
+        <div class="container">
+            <form th:action="@{/product_management/save_new_category}" method="POST">
+                <div class="form-group row">
+                  <label for="inputCategory" class="col-sm-2 col-form-label">Category Code</label>
+                  <div class="col-sm-10">
+                    <input name="code" type="text" class="form-control" placeholder="Input Code of Category">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="inputCategoryName" class="col-sm-2 col-form-label">Category Name</label>
+                  <div class="col-sm-10">
+                    <input name="name" type="text" class="form-control" id="inputPassword3" placeholder="Input Name of Category">
+                  </div>
+                </div>
+                <fieldset class="form-group">
+                  <div class="row">
+                    <legend class="col-form-label col-sm-2 pt-0"></legend>
+                    <div class="col-sm-10">
+                      <div id="radio" class="form-check">
+                        <div>
+                          <input name="type" class="form-check-input" type="radio" id="gridRadios1" value="drink" checked>
+                          <label class="form-check-label" for="gridRadios1">
+                            Drink
+                          </label>
+                        </div>
+                        <div>
+                          <input name="type" class="form-check-input" type="radio" id="gridRadios2" value="food">
+                          <label class="form-check-label" for="gridRadios2">
+                            Food
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                <div class="form-group row">
+                  <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">OK</button>
+                    <a th:href="@{/admin/product_management/drink}" class="cancel">
+                      <button type="button" class="btn btn-danger">CanCel</button>
+                    </a>
+                  </div>
+                </div>
+              </form>
         </div>
-
-        <div class="flex items-center">
-          <input type="radio" id="drink" name="type" value="drink" checked>
-          <label for="drink">drink</label>
-          <input type="radio" id="food" name="type" value="food">
-          <label for="food">food</label><br>
-        </div>
-
-        <div class="btn">
-            <button type="submit" >Ok</button>
-            <a th:href="@{/product_management/drink}" class="cancel">Cancel</a>
-        </div>
-    </form>
+    </div>
 </body>
 </html>

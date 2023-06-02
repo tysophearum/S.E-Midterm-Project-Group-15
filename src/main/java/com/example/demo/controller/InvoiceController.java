@@ -30,11 +30,11 @@ public class InvoiceController {
 
         invoiceService.saveInvoice(invoice);
 
-        String destination = "redirect:/change_calculation/" + invoice.getId();
+        String destination = "redirect:/user/change_calculation/" + invoice.getId();
         return destination;
     }
 
-    @GetMapping("/change_calculation/{invoiceID}")
+    @GetMapping("/user/change_calculation/{invoiceID}")
     public String calculateChange(Model model, @PathVariable Integer invoiceID){
 
         Receipt receipt = new Receipt();

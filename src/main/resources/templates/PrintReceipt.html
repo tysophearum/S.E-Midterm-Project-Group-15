@@ -60,7 +60,11 @@
             display: flex;
             justify-content: space-around;
         }
-       
+       .goback{
+        display: flex;
+        justify-content: center;
+        margin-top: 4px;
+       }
         
     </style>
 </head>
@@ -134,6 +138,8 @@
             <p>Delivery Hotline: 023 215 215</p>
         </div>
     </div>
-    <a th:href="@{/clear_current_order}">Go bach to product selection</a>
+    <div class="goback">
+        <a th:href="@{/user/clear_current_order}">Go bach to product selection</a>
+    </div>
 </body>
 </html>

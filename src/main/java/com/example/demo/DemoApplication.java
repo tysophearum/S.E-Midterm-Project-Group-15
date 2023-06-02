@@ -6,11 +6,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.model.Addons;
+import com.example.demo.model.Product;
+import com.example.demo.model.Product_category;
 import com.example.demo.model.Product_size;
+import com.example.demo.model.User;
 import com.example.demo.repository.AddonsRepository;
+import com.example.demo.repository.CategoryRepository;
+import com.example.demo.repository.ProductRepository;
 // import com.example.demo.repository.DrinkRepository;
 import com.example.demo.repository.ProductSizeRepository;
 // import com.example.demo.service.DrinkSizeService;
+import com.example.demo.repository.UserRepository;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -24,6 +30,16 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Autowired
 	private AddonsRepository addonsRepository;
+
+	@Autowired
+	private UserRepository userreRepository;
+
+	@Autowired
+	private ProductRepository productRepository;
+
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -50,8 +66,10 @@ public class DemoApplication implements CommandLineRunner {
 			addonsRepository.save(sugar50);
 			addonsRepository.save(sugar75);
 			addonsRepository.save(sugar100);
-			
-			
+		}
+
+		if(userreRepository.count() == 0){
+			userreRepository.save(new User("admin", "admin", "admin", "admin", null, "admin", "admin", "admin"));
 		}
 	}
 

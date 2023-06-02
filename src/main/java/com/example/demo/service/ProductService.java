@@ -14,4 +14,5 @@ public interface ProductService {
     Product getProductById(Integer id);
     void deleteProduct(Integer id);
     Product getFirstProduct();
+    Product updateProduct(Product product, MultipartFile file);
 }

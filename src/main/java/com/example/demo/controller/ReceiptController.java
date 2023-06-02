@@ -41,11 +41,11 @@ public class ReceiptController {
     @PostMapping("/receipt/save")
     public String saveReceipt(@ModelAttribute("receipt") Receipt receipt){
         receiptService.saveReceipt(receipt);
-        String destination = "redirect:/receipt/" + receipt.getInvoice_id();
+        String destination = "redirect:/user/receipt/" + receipt.getInvoice_id();
         return destination;
     }
 
-    @GetMapping("/receipt/{invoiceId}")
+    @GetMapping("/user/receipt/{invoiceId}")
     public String printReceipt(@PathVariable Integer invoiceId, Model model){
         model.addAttribute("invoice", invoiceService.getInvoiceById(invoiceId));
         

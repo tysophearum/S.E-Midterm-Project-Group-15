@@ -1,5 +1,7 @@
 package com.example.demo.service.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.Invoice;
@@ -15,7 +17,6 @@ public class InvoiceServiceImpl implements InvoiceService {
         this.invoiceRepository = invoiceRepository;
     }
 
-
     @Override
     public Integer getNewInvoiceNumber() {
         Integer newNumber = (int) invoiceRepository.count();
@@ -27,7 +28,6 @@ public class InvoiceServiceImpl implements InvoiceService {
         return newNumber;
     }
 
-
     @Override
     public Invoice saveInvoice( Invoice invoice) {
         return invoiceRepository.save(invoice);
@@ -37,6 +37,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     @Override
     public Invoice getInvoiceById(Integer id) {
         return invoiceRepository.findById(id).get();
+    }
+
+    @Override
+    public List getAllInvoices() {
+        return invoiceRepository.findAll();
     }
     
 }

@@ -22,6 +22,7 @@ import com.example.demo.model.Product_order;
 import com.example.demo.service.AddonsService;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.CurrentProductOrderService;
+import com.example.demo.service.InvoiceService;
 import com.example.demo.service.ProductOrderService;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductSizeService;
@@ -34,8 +35,9 @@ public class ProductController {
     private ProductSizeService productSizeService;
     private ProductOrderService drinkOrderService;
     private CurrentProductOrderService currentProductOrderService;
+    private InvoiceService invoiceService;
 
-    public ProductController(ProductService productService, CategoryService categoryService, AddonsService addonsService, ProductSizeService productSizeService, ProductOrderService drinkOrderService, CurrentProductOrderService currentProductOrderService) {
+    public ProductController(ProductService productService, CategoryService categoryService, AddonsService addonsService, ProductSizeService productSizeService, ProductOrderService drinkOrderService, CurrentProductOrderService currentProductOrderService, InvoiceService invoiceService) {
         super();
         this.productService = productService;
         this.categoryService = categoryService;
@@ -43,16 +45,24 @@ public class ProductController {
         this.productSizeService = productSizeService;
         this.drinkOrderService = drinkOrderService;
         this.currentProductOrderService = currentProductOrderService;
+        this.invoiceService = invoiceService;
+    }
+
+    @GetMapping("/admin/product_management/add_new_product")
+    public String addNewProductForm(Model model){
+        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("drink", new Product());
+        return "addNewDrink";
     }
 
     @PostMapping("/product_management/add_new_product/save")
     public String saveProduct(@ModelAttribute("drink") Product drink, @RequestParam("file") MultipartFile file){
         
         productService.saveProduct(drink, file);
-        return "redirect:/product_management/drink";
+        return "redirect:/admin/product_management/drink";
     }
 
-    @GetMapping("/product_selection")
+    @GetMapping("/user/product_selection")
     public String showDrinks(Model model){
         Current_product_order newOrder = new Current_product_order();
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -69,21 +79,23 @@ public class ProductController {
         return "drinkSelection";
     }
 
-    @GetMapping("/product_management/drink")
+    @GetMapping("/admin/product_management/drink")
     public String listDrink (Model model) {
         model.addAttribute("drinks", productService.getAllDrinks());
+        model.addAttribute("invoices", invoiceService.getAllInvoices());
         return "drinkManagement";
     }
 
-    @GetMapping("/product_management/food")
+    @GetMapping("/admin/product_management/food")
     public String listFood (Model model) {
         model.addAttribute("drinks", productService.getAllFoods());
+        model.addAttribute("invoices", invoiceService.getAllInvoices());
         return "foodManagement";
     }
 
     
 
-    @GetMapping("/product_management/edit/{id}")
+    @GetMapping("/admin/product_management/edit/{id}")
     public String editDrink(@PathVariable Integer id, Model model){
         Product updateDrink = productService.getProductById(id);
         model.addAttribute("categories", categoryService.getAllCategories());
@@ -101,32 +113,34 @@ public class ProductController {
         drink.setPrice(updatedDrink.getPrice());
         drink.setNote(updatedDrink.getNote());
         productService.saveProduct(drink, file);
-        return "redirect:/product_management/drink";
+        return "redirect:/admin/product_management/drink";
     }
 
     @GetMapping("/product_management/delete/{id}")
     public String deleteDrink (@PathVariable Integer id) {
         productService.deleteProduct(id);
-        return "redirect:/product_management/drink";
+        return "redirect:/admin/product_management/drink";
     }
 
-    @GetMapping("/product_management/drink/{id}")
+    @GetMapping("/admin/product_management/drink/{id}")
     public String showDrink(@PathVariable Integer id, Model model){
         Product selectDrink = productService.getProductById(id);
         Product_category category = categoryService.getCateforyById(selectDrink.getCategory_id());
         model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("selectedCategory", category);
         model.addAttribute("selectedDrink", selectDrink);
+        model.addAttribute("invoices", invoiceService.getAllInvoices());
         return "viewDrink";
     }
 
-    @GetMapping("/product_management/food/{id}")
+    @GetMapping("/admin/product_management/food/{id}")
     public String showFood(@PathVariable Integer id, Model model){
         Product selectDrink = productService.getProductById(id);
         Product_category category = categoryService.getCateforyById(selectDrink.getCategory_id());
         model.addAttribute("drinks", productService.getAllFoods());
         model.addAttribute("selectedCategory", category);
         model.addAttribute("selectedDrink", selectDrink);
+        model.addAttribute("invoices", invoiceService.getAllInvoices());
         return "viewFood";
     }
 

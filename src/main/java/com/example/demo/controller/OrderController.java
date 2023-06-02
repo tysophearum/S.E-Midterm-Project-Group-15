@@ -25,16 +25,16 @@ public class OrderController {
     @PostMapping("/save_order")
     public String saveOrder(@ModelAttribute("order") Current_product_order drink_order){
         currentDrinkOrderService.saveOrder(drink_order);
-        return "redirect:/product_selection";
+        return "redirect:/user/product_selection";
     }
 
     @GetMapping("/product_selection/delete_order/{id}")
     public String deleteOrder(@PathVariable Integer id){
         currentDrinkOrderService.deleteOrder(id);
-        return "redirect:/product_selection";
+        return "redirect:/user/product_selection";
     }
 
-    @GetMapping("/clear_current_order")
+    @GetMapping("/user/clear_current_order")
     public String clearCurrentOrder(){
         for(Current_product_order cOrder: currentDrinkOrderService.getAllOrders()){
             String addon_ids = cOrder.getAddon_ids();
@@ -45,6 +45,6 @@ public class OrderController {
             drinkOrderService.saveOrder(product_order);
         }
         currentDrinkOrderService.deleteAllOrders();
-        return "redirect:/product_selection";
+        return "redirect:/user/product_selection";
     }
 }

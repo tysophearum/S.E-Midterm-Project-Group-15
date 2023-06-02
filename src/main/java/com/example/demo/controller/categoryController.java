@@ -19,14 +19,7 @@ public class categoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/product_management/add_new_product")
-    public String addNewProductForm(Model model){
-        model.addAttribute("categories", categoryService.getAllCategories());
-        model.addAttribute("drink", new Product());
-        return "addNewDrink";
-    }
-
-    @GetMapping("/product_management/add_new_category")
+    @GetMapping("/admin/product_management/add_new_category")
     public String createCategory(Model model){
         Product_category newCategory = new Product_category();
         model.addAttribute("category", newCategory);
@@ -40,7 +33,7 @@ public class categoryController {
         category.setCode(code);
         category.setType(type);
         categoryService.saveCategory(category);
-        return "redirect:/product_management/drink";
+        return "redirect:/admin/product_management/drink";
     }
 
     @PostMapping("/product_management/save_new_category_from_product")
@@ -50,7 +43,7 @@ public class categoryController {
         category.setCode(code);
         category.setType(type);
         categoryService.saveCategory(category);
-        return "redirect:/product_management/add_new_product";
+        return "redirect:/admin/product_management/add_new_product";
     }
 
 }

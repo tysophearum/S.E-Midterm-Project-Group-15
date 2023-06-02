@@ -24,13 +24,13 @@ public class TableController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/table_management")
+    @GetMapping("/admin/table_management")
     public String manageTable(Model model){
         model.addAttribute("tableAmount", tableService.getTableAmount());
         return "tableManagement";
     }
     
-    @GetMapping("/table_selection")
+    @GetMapping("/user/table_selection")
     public String selectTable(Model model){
         Invoice newInvoice = new Invoice();
         newInvoice.setProduct_order_ids(currentDrinkOrderService.getAllOrderIds());
@@ -44,12 +44,12 @@ public class TableController {
     @PostMapping("/table_management/set_number_of_table")
     public String setTableAmount(@RequestParam("tableAmount") Integer tableAmount){
         tableService.setNewTableAmount(tableAmount);
-        return "redirect:/product_management/drink";
+        return "redirect:/admin/product_management/drink";
     }
 
     @PostMapping("/tableAvailebility/edit")
     public String setTableAvaileble(@RequestParam("tableID") Integer tableID){
         tableService.setTableAvaileble(tableID);
-        return "redirect:/table_selection";
+        return "redirect:/user/table_selection";
     }
 }

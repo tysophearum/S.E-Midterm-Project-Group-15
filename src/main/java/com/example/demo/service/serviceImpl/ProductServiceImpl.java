@@ -37,7 +37,10 @@ public class ProductServiceImpl implements ProductService {
 
         if(!product.isEmpty()){
             try {
-                product.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+                String image = Base64.getEncoder().encodeToString(file.getBytes());
+                product.setImage(image);
+                productRepository.save(product);
+
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -99,6 +102,36 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public Product updateProduct(Product product, MultipartFile file) {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if(fileName.contains("..") || fileName.isEmpty())
+		{
+			System.out.println("not a a valid file");
+		}
+
+        if(!product.isEmpty()){
+            try {
+                if(!fileName.isEmpty()) {
+                    String image = Base64.getEncoder().encodeToString(file.getBytes());
+                    product.setImage(image);
+                }
+                else{
+                    String image = productRepository.findById(product.getId()).get().getImage();
+                    product.setImage(image);
+                }
+
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return productRepository.save(product);
+        }
+        else{
+            return null;
+        }
     }
 
 

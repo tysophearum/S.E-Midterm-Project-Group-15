@@ -30,18 +30,28 @@ public class UserServiceImpl implements UserService {
 			System.out.println("not a a valid file");
 		}
 
-        // if(!user.isEmpty()){
+        if(!user.isEmpty()){
             try {
-                user.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+                if(user.getId() == null && !fileName.isEmpty()) {
+                    String image = Base64.getEncoder().encodeToString(file.getBytes());
+                    user.setImage(image);
+                }
+                else if(user.getId() > 0 && fileName.isEmpty()){
+                    String image = userRepository.findById(user.getId()).get().getImage();
+                    user.setImage(image);
+                }
+                else {
+                    userRepository.save(user);
+                }
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             return userRepository.save(user);
-        // }
-        // else{
-        //     return null;
-        // }
+        }
+        else{
+            return null;
+        }
     }
 
     @Override

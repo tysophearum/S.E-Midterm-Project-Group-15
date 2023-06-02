@@ -33,6 +33,22 @@ public class User {
     @Column(nullable = false, length = 2147483647)
     private String image;
 
+
+    public User() {
+    }
+
+    public User(String first_name, String last_name, String sex, String password, Date date_of_birth, String username, String role, String image) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.sex = sex;
+        this.password = password;
+        this.date_of_birth = date_of_birth;
+        this.username = username;
+        this.role = role;
+        this.image = image;
+    }
+
+
     public Integer getId() {
         return this.id;
     }
@@ -112,5 +128,12 @@ public class User {
         else{
             return false;
         }
+    }
+
+    public boolean hasRole(String role){
+        if(this.role.equals(role)){
+            return true;
+        }
+        return false;
     }
 }
