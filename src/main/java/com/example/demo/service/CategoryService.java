@@ -10,5 +10,5 @@ public interface CategoryService {
     Product_category getCateforyById(Integer id);
     List<Product_category> getFoodCategories();
     List<Product_category> getDrinkCategories();
-    
+    void deleteCategory(Integer id);
 }

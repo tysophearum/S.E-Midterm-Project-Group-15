@@ -31,7 +31,7 @@
 </head>
 <body class="p-1">
     <div class="all flex flex-col justify-center">
-        <h1 class="text-5xl text-white w-full flex justify-center bg-[#044468] rounded-md shadow-md p-3">Table selsction</h1>
+        <h1 class="text-5xl text-white w-full flex justify-center bg-[#044468] rounded-md shadow-md p-3">Table selection</h1>
         <div class="flex flex-col items-center justify-center">
             <div class="left-side w-2/3 grid grid-cols-6 gap-5 p-4">
                 <button th:each="table: ${tables}" th:id="${table.id}" th:class="${'a'+table.availability}" th:text="${table.number}"></button>
@@ -47,7 +47,8 @@
         <div class="bg-white p-8 rounded shadow-lg">
             <h2 class="text-xl mb-4">Do you have any note for the customer?<span id="buttonName"></span></h2>
             <form method="POST" th:object="${invoice}" th:action="@{/checkout/saveInvoice}">
-                <input th:field="*{table_id}" id="tableID" type="number" class="hidden">
+                <p id="tableAllert" class="text-red-500 pb-3">You have not selected a table yet!!!</p>
+                <input th:field="*{table_id}" id="tableID" type="text" class="hidden" required title="You have not selected a table yet">
                 <input th:field="*{product_order_ids}" th:value="${invoice.product_order_ids}" id="tableID" type="text" class="hidden">
                 <input th:field="*{number}" th:value="${number}" id="tableID" type="number" class="hidden">
                 <input th:field="*{price}" th:value="${price}" id="tableID" type="number" class="hidden">
@@ -64,7 +65,7 @@
     <!-- form 2 -->
     <div id="form2" class="fixed h-[100vh] w-full top-0 left-0 items-center justify-center hidden">
         <div id="container" class="w-fit bg-gray-200 p-6 rounded-md shadow-md">
-            <h1 class="text-2xl text-gray-700">Do you want to make this table availeble?</h1>
+            <h1 class="text-2xl text-gray-700">Do you want to make this table available?</h1>
             <form method="POST" th:action="@{/tableAvailebility/edit}" class="flex justify-between mt-7">
                 <input type="number" name="tableID" id="chTable" class="hidden">
                 <div onclick="closeForm2()" class="py-2 px-4 text-white w-1/3 font-bold rounded-xl bg-red-500 flex items-center justify-center cursor-pointer">No</div>
@@ -89,6 +90,7 @@
                 table.style.backgroundColor = "#548235"
             }
             document.getElementById(catID).style.backgroundColor = "#c55a11"
+            document.getElementById("tableAllert").style.display = "none"
             document.getElementById("tableID").value = catID;
             
         }

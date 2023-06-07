@@ -46,5 +46,10 @@ public class CategoryServiceImpl implements CategoryService {
     public List<Product_category> getDrinkCategories() {
         return categoryRepository.findByType("drink");
     }
+
+    @Override
+    public void deleteCategory(Integer id) {
+        categoryRepository.deleteById(id);
+    }
     
 }

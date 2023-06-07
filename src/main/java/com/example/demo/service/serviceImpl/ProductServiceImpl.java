@@ -114,15 +114,14 @@ public class ProductServiceImpl implements ProductService {
 
         if(!product.isEmpty()){
             try {
-                if(!fileName.isEmpty()) {
+                if(product.getId() == null && !fileName.isEmpty()) {
                     String image = Base64.getEncoder().encodeToString(file.getBytes());
                     product.setImage(image);
                 }
-                else{
+                else if(product.getId() > 0 && fileName.isEmpty()){
                     String image = productRepository.findById(product.getId()).get().getImage();
                     product.setImage(image);
                 }
-
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

@@ -112,7 +112,7 @@ public class ProductController {
         drink.setCategory_id(updatedDrink.getCategory_id());
         drink.setPrice(updatedDrink.getPrice());
         drink.setNote(updatedDrink.getNote());
-        productService.saveProduct(drink, file);
+        productService.updateProduct(drink, file);
         return "redirect:/admin/product_management/drink";
     }
 

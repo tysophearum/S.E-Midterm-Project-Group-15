@@ -22,7 +22,7 @@
     <form method="post" th:action="@{/login}">
       <div class="mb-4">
         <label class="block text-black text-sm font-bold mb-2" for="username">Username</label>
-        <input name="username" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username">
+        <input onchange="saveToLocalStorage()" name="username" class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your username">
       </div>
       <div class="mb-6">
         <label class="block text-black text-sm font-bold mb-2" for="password">Password</label>
@@ -37,5 +37,12 @@
         <h4 style="color: red">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</h4>
     </div>
   </div>
+
+  <script>
+    function saveToLocalStorage() {
+      let username = document.getElementById("username").value
+      localStorage.setItem("username", username)
+    }
+  </script>
 </body>
 </html>

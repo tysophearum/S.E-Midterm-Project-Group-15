@@ -20,5 +20,11 @@ public class ReceiptServiceImpl implements ReceiptService {
     public Receipt saveReceipt(Receipt receipt) {
         return receiptRepository.save(receipt);
     }
+
+
+    @Override
+    public Receipt getReceiptById(Integer id) {
+        return receiptRepository.findById(id).get();
+    }
     
 }

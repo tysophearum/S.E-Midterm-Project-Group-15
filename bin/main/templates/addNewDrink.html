@@ -102,36 +102,35 @@ p{
 </style>
 <body class="bg-gray-100">
   <div class="container w-[80%] bg-white p-3 rounded-md shadow-md">
-    <h2 class="bg-[#044468] flex justify-center items-center text-white text-4xl font-bold p-3 rounded-md shadow-md">Product Order Form</h2>
+    <h2 class="bg-[#044468] flex justify-center items-center text-white text-4xl font-bold p-3 rounded-md shadow-md">New Product Form</h2>
     <div class="d-flex">
       <form th:action="@{/product_management/add_new_product/save}" method="POST" th:object="${drink}" enctype="multipart/form-data">
         <label>
           <span class="fname">Drinks Code <span class="required">*</span></span>
-          <input th:field="*{code}" type="text" name="dcode">
+          <input required th:field="*{code}" type="text" name="dcode">
         </label>
         <label>
           <span class="lname">Drinks Name<span class="required">*</span></span>
-          <input th:field="*{name}" type="text" name="dname">
+          <input required th:field="*{name}" type="text" name="dname">
         </label>
         <label class="flex">
           <span>Category <span class="required">*</span></span>
           <select th:field="*{category_id}" name="selection" class="w-96 mr-5">
-            <option value="select">Select Your Drink</option>
             <option  th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
           </select>
           <img class="w-9 h-fit cursor-pointer" src="https://static-00.iconduck.com/assets.00/plus-icon-1024x1024-jdaf40nu.png" onclick="openCal()" alt="">
         </label>
         <label>
           <span>Price <span class="required">*</span></span>
-          <input th:field="*{price}" type="text" name="Price"> 
+          <input required th:field="*{price}" type="text" name="Price"> 
         </label>
         <label>
           <span>Note </span>
-          <input th:field="*{note}" type="text" name="note"> 
+          <input required th:field="*{note}" type="text" name="note"> 
         </label>
         <div class="custom-file mb-4 flex items-center ">
           <label class="custom-file-label mr-52" for="customFile">Product Image</label>
-          <input type="file" name="file" class="custom-file-input" id="customFile"> 
+          <input required type="file" name="file" class="custom-file-input" id="customFile"> 
         </div>
         <label style="display: flex;">
           <button type="submit" class="Ok bg-blue-600 text-white rounded-md px-8 py-2 font-bold mr-3">Ok</button>
@@ -151,11 +150,11 @@ p{
         <h2 class="flex items-center justify-center bg-[#044468] rounded-md text-white py-2">New Category</h2>
         <div class="content flex items-center">
             <label for="#">Category code :</label>
-            <input name="code" type="text" placeholder="code of ctegory">
+            <input required name="code" type="text" placeholder="code of ctegory">
         </div>
         <div class="content flex items-center">
             <label for="#">Category name :</label>
-            <input name="name" type="text" placeholder="name of ctegory">
+            <input required name="name" type="text" placeholder="name of category">
         </div>
 
         <div class="flex items-center ml-4">

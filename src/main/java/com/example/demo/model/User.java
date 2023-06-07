@@ -25,6 +25,7 @@ public class User {
 
     private Date date_of_birth;
 
+    @Column(unique=true)
     private String username;
 
     private String role;
@@ -120,6 +121,7 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
 
     public boolean isEmpty(){
         if(first_name.isEmpty() || last_name.isEmpty() || username.isEmpty() || password.isEmpty() || role.isEmpty()){

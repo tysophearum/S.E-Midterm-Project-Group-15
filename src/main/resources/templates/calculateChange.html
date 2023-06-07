@@ -11,7 +11,7 @@
     <div id="myForm2" class="w-[100vw] h-[100vh] fixed top-0 left-0 flex items-center justify-center">
         <div id="container" class="bg-gray-50 p-4 rounded shadow-lg w-1/3 popup-form2 drop-shadow-2xl">
             <input id="result" type="text" class="w-full mb-4 p-2 border border-gray-300 rounded" readonly>
-            <span>Total: </span><span class="text-gray-600" id="total" th:text="${total}"></span>
+            <span>Total: </span><span class="text-gray-600" id="total" th:text="${total}">3</span>
             <div></div>
             <span>Change: </span><span class="text-gray-600" id="change"></span>
             <div class="grid grid-cols-4 gap-2">
@@ -31,8 +31,8 @@
                 <button onclick="appendNumber('.')" class="h-14 operator bg-blue-500 text-white p-2 rounded">.</button>
                 <form action="#" th:action="@{/receipt/save}" method="post" th:object="${receipt}">
                     <input type="number" th:field="*{invoice_id}" th:value="${receipt.invoice_id}" class="hidden">
-                    <input id="cash_change" type="number" step="0.01" th:field="*{cash_change}" class="hidden">
-                    <input id="cash_received" type="number" th:field="*{cash_received}" class="hidden">
+                    <input id="cash_change" type="number" min="0" required step="0.01" th:field="*{cash_change}" class="hidden">
+                    <input id="cash_received" type="number" step="0.01" th:field="*{cash_received}" class="hidden">
                     <button type="submit" id="equals" class="h-14 w-full bg-green-500 text-white p-2 rounded">OK</button>
                 </form>
                 <button onclick="clearResult()" class="h-14 operator bg-red-600 text-white p-2 rounded">C</button>
@@ -68,6 +68,11 @@
             let change = (parseFloat(input.value) - parseFloat(total.innerText)).toFixed(2)
             if(isNaN(change) || change <= 0){
                 changeOutput.innerText = 0
+                let inputValue = parseFloat(input.value)
+                let changeValue = (inputValue - parseFloat(total.innerText)).toFixed(2)
+
+                cash_received.value = inputValue
+                cash_change.value = changeValue
             }
             else{
                 let inputValue = parseFloat(input.value)
