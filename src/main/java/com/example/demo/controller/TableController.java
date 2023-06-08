@@ -14,13 +14,13 @@ import com.example.demo.service.TableService;
 @Controller
 public class TableController {
     private TableService tableService;
-    private CurrentProductOrderService currentDrinkOrderService;
+    private CurrentProductOrderService currentProductOrderService;
     private InvoiceService invoiceService;
 
-    public TableController(TableService tableService, CurrentProductOrderService currentDrinkOrderService, InvoiceService invoiceService) {
+    public TableController(TableService tableService, CurrentProductOrderService currentProductOrderService, InvoiceService invoiceService) {
         super();
         this.tableService = tableService;
-        this.currentDrinkOrderService = currentDrinkOrderService;
+        this.currentProductOrderService = currentProductOrderService;
         this.invoiceService = invoiceService;
     }
 
@@ -32,10 +32,14 @@ public class TableController {
     
     @GetMapping("/user/table_selection")
     public String selectTable(Model model){
+        if(currentProductOrderService.isEmpty()){
+            return "redirect:/user/product_selection";
+        }
+
         Invoice newInvoice = new Invoice();
-        newInvoice.setProduct_order_ids(currentDrinkOrderService.getAllOrderIds());
+        newInvoice.setProduct_order_ids(currentProductOrderService.getAllOrderIds());
         newInvoice.setNumber(invoiceService.getNewInvoiceNumber());
-        newInvoice.setPrice(currentDrinkOrderService.getTotalPrice());
+        newInvoice.setPrice(currentProductOrderService.getTotalPrice());
         model.addAttribute("invoice", newInvoice);
         model.addAttribute("tables", tableService.getAllTable());
         return "tableSelection";

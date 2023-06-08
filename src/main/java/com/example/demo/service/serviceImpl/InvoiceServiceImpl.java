@@ -40,7 +40,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public List getAllInvoices() {
+    public List<Invoice> getAllInvoices() {
         return invoiceRepository.findAll();
     }
     

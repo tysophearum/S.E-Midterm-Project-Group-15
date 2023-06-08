@@ -12,6 +12,8 @@ import com.example.demo.model.Product_category;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.ProductService;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class categoryController {
     private CategoryService categoryService;
@@ -41,12 +43,17 @@ public class categoryController {
     }
 
     @PostMapping("/product_management/save_new_category_from_product")
-    public String saveCategoryFromProduct(@RequestParam("code") String code, @RequestParam("name") String name, @RequestParam("type") String type){
+    public String saveCategoryFromProduct(@RequestParam("code") String code, @RequestParam("name") String name, @RequestParam("type") String type, HttpServletRequest request){
         Product_category category = new Product_category();
         category.setName(name);
         category.setCode(code);
         category.setType(type);
         categoryService.saveCategory(category);
+        String referer = request.getHeader("Referer");
+        
+        if (referer != null && !referer.isEmpty()) {
+            return "redirect:" + referer;
+        }
         return "redirect:/admin/product_management/add_new_product";
     }
 
@@ -58,7 +65,7 @@ public class categoryController {
 
     @GetMapping("/admin/delete_category/{id}")
     public String deleteCategory(@PathVariable Integer id){
-        for(Product product: productService.getAllDrinks()){
+        for(Product product: productService.getAllProducts()){
             if(product.getCategory_id() ==  id) {
                 productService.deleteProduct(product.getId());
             }

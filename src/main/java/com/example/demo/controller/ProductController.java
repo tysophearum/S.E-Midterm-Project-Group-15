@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -18,12 +17,10 @@ import com.example.demo.info.OrderInfo;
 import com.example.demo.model.Current_product_order;
 import com.example.demo.model.Product;
 import com.example.demo.model.Product_category;
-import com.example.demo.model.Product_order;
 import com.example.demo.service.AddonsService;
 import com.example.demo.service.CategoryService;
 import com.example.demo.service.CurrentProductOrderService;
 import com.example.demo.service.InvoiceService;
-import com.example.demo.service.ProductOrderService;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductSizeService;
 
@@ -33,17 +30,15 @@ public class ProductController {
     private CategoryService categoryService;
     private AddonsService addonsService;
     private ProductSizeService productSizeService;
-    private ProductOrderService drinkOrderService;
     private CurrentProductOrderService currentProductOrderService;
     private InvoiceService invoiceService;
 
-    public ProductController(ProductService productService, CategoryService categoryService, AddonsService addonsService, ProductSizeService productSizeService, ProductOrderService drinkOrderService, CurrentProductOrderService currentProductOrderService, InvoiceService invoiceService) {
+    public ProductController(ProductService productService, CategoryService categoryService, AddonsService addonsService, ProductSizeService productSizeService, CurrentProductOrderService currentProductOrderService, InvoiceService invoiceService) {
         super();
         this.productService = productService;
         this.categoryService = categoryService;
         this.addonsService = addonsService;
         this.productSizeService = productSizeService;
-        this.drinkOrderService = drinkOrderService;
         this.currentProductOrderService = currentProductOrderService;
         this.invoiceService = invoiceService;
     }
@@ -57,9 +52,9 @@ public class ProductController {
 
     @PostMapping("/product_management/add_new_product/save")
     public String saveProduct(@ModelAttribute("drink") Product drink, @RequestParam("file") MultipartFile file){
-        
-        productService.saveProduct(drink, file);
-        return "redirect:/admin/product_management/drink";
+        Product product = productService.saveProduct(drink, file);
+        String type = categoryService.getCateforyById(product.getCategory_id()).getType();
+        return "redirect:/admin/product_management/" + type;
     }
 
     @GetMapping("/user/product_selection")
@@ -112,14 +107,18 @@ public class ProductController {
         drink.setCategory_id(updatedDrink.getCategory_id());
         drink.setPrice(updatedDrink.getPrice());
         drink.setNote(updatedDrink.getNote());
-        productService.updateProduct(drink, file);
-        return "redirect:/admin/product_management/drink";
+        Product product = productService.updateProduct(drink, file);
+        String type = categoryService.getCateforyById(product.getCategory_id()).getType();
+        return "redirect:/admin/product_management/" + type;
     }
 
     @GetMapping("/product_management/delete/{id}")
     public String deleteDrink (@PathVariable Integer id) {
+        Integer productCategoryId = productService.getProductById(id).getCategory_id();
+        String type = categoryService.getCateforyById(productCategoryId).getType();
         productService.deleteProduct(id);
-        return "redirect:/admin/product_management/drink";
+        
+        return "redirect:/admin/product_management/" + type;
     }
 
     @GetMapping("/admin/product_management/drink/{id}")

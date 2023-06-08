@@ -12,41 +12,41 @@ import com.example.demo.service.ProductSizeService;
 
 @Service
 public class CurrentProductOrderImpl implements CurrentProductOrderService {
-    private CurrentProductOrderRepository currentDrinkOrderRepository;
+    private CurrentProductOrderRepository currentProductOrderRepository;
     private ProductService productService;
-    private ProductSizeService drinkSizeService;
+    private ProductSizeService productSizeService;
 
-    public CurrentProductOrderImpl(CurrentProductOrderRepository currentDrinkOrderRepository, ProductService productService, ProductSizeService drinkSizeService) {
+    public CurrentProductOrderImpl(CurrentProductOrderRepository currentProductOrderRepository, ProductService productService, ProductSizeService productSizeService) {
         super();
-        this.currentDrinkOrderRepository = currentDrinkOrderRepository;
+        this.currentProductOrderRepository = currentProductOrderRepository;
         this.productService = productService;
-        this.drinkSizeService = drinkSizeService;
+        this.productSizeService = productSizeService;
     }
 
     @Override
     public List<Current_product_order> getAllOrders() {
-        return currentDrinkOrderRepository.findAll();
+        return currentProductOrderRepository.findAll();
     }
 
     @Override
-    public Current_product_order saveOrder(Current_product_order current_drink_order) {
-        return currentDrinkOrderRepository.save(current_drink_order);
+    public Current_product_order saveOrder(Current_product_order current_product_order) {
+        return currentProductOrderRepository.save(current_product_order);
     }
 
     @Override
     public Current_product_order getOrderById(Integer id) {
-        return currentDrinkOrderRepository.findById(id).get();
+        return currentProductOrderRepository.findById(id).get();
     }
 
     @Override
     public void deleteOrder(Integer id) {
-        currentDrinkOrderRepository.deleteById(id);;
+        currentProductOrderRepository.deleteById(id);;
     }
 
     @Override
     public String getAllOrderIds() {
         String ids = "";
-        for(Current_product_order order: currentDrinkOrderRepository.findAll()){
+        for(Current_product_order order: currentProductOrderRepository.findAll()){
             ids = ids + order.getId() + ",";
         }
         ids = ids.substring(0, ids.length()-1);
@@ -56,10 +56,10 @@ public class CurrentProductOrderImpl implements CurrentProductOrderService {
     @Override
     public Float getTotalPrice() {
         Float totalPrice = (float) 0;
-        for(Current_product_order order: currentDrinkOrderRepository.findAll()){
+        for(Current_product_order order: currentProductOrderRepository.findAll()){
             Float orderAmount = (float) order.getAmount();
             Float orderPrice = productService.getProductById( order.getProduct_id() ).getPrice();
-            Float orderSizePrice = drinkSizeService.getSizeById(order.getSize_id()).getPrice();
+            Float orderSizePrice = productSizeService.getSizeById(order.getSize_id()).getPrice();
             totalPrice = totalPrice + ( ( ( orderPrice + orderSizePrice ) * orderAmount ) );
         }
         return totalPrice;
@@ -67,7 +67,17 @@ public class CurrentProductOrderImpl implements CurrentProductOrderService {
 
     @Override
     public void deleteAllOrders() {
-        currentDrinkOrderRepository.deleteAll();;
+        currentProductOrderRepository.deleteAll();;
+    }
+
+    @Override
+    public Boolean isEmpty() {
+        if(currentProductOrderRepository.count() == 0) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
     
     

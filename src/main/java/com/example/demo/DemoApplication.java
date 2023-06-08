@@ -6,13 +6,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.demo.model.Addons;
-import com.example.demo.model.Product;
-import com.example.demo.model.Product_category;
 import com.example.demo.model.Product_size;
 import com.example.demo.model.User;
 import com.example.demo.repository.AddonsRepository;
-import com.example.demo.repository.CategoryRepository;
-import com.example.demo.repository.ProductRepository;
 // import com.example.demo.repository.DrinkRepository;
 import com.example.demo.repository.ProductSizeRepository;
 // import com.example.demo.service.DrinkSizeService;
@@ -33,12 +29,6 @@ public class DemoApplication implements CommandLineRunner {
 
 	@Autowired
 	private UserRepository userreRepository;
-
-	@Autowired
-	private ProductRepository productRepository;
-
-	@Autowired
-	private CategoryRepository categoryRepository;
 
 
 	@Override

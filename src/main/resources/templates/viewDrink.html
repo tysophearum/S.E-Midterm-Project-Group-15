@@ -97,6 +97,12 @@
                     </a>
                 </li>
                 <li>
+                    <a th:href="@{/admin/category_management}">
+                        <span class="icon"><i class="fas fa-thin fa-clipboard"></i></span>
+                        <span class="item">Manage Category</span>
+                    </a>
+                </li>
+                <li>
                     <a href="#orderhistory" id="Orderhistory">
                         <span class="icon" id="Orderhistory"><i class="fas fa-database"></i></span>
                         <span class="item" id="Orderhistory">Orderhistory</span>
@@ -137,8 +143,8 @@
                                 <p class="pl-5">Action</p>
                             </div>
                                 <div class="list-name block h-[85vh] overflow-auto">
-                                    <div th:each="drink: ${drinks}" class="cash grid grid-cols-5 pl-5 mx-2.5 rounded-md shadow-md p-1 bg-white">
-                                        <p class="flex items-center" th:text="${drink.id}"></p>
+                                    <div th:each="drink, iStat : ${drinks}" class="cash grid grid-cols-5 pl-5 mx-2.5 rounded-md shadow-md p-1 bg-white">
+                                        <p class="flex items-center" th:text="${iStat.index + 1}"></p>
                                         <p class="flex items-center" th:text="${drink.code}"></p>
                                         <a class="flex items-center underline" th:href="@{/admin/product_management/drink/{id} (id = ${drink.id})}" th:text="${drink.name}" ></a>
                                         <p class="flex items-center" th:text="${drink.price}"></p>
@@ -147,7 +153,7 @@
                                                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                                                 </svg>                                                                          
                                             </a>
-                                            <a th:href="@{/product_management/delete/{id} (id=${drink.id})}" class="delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6">
+                                            <a th:href="@{/product_management/delete/{id} (id=${drink.id})}" class="delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6" onclick="storeSth()">
                                                 <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
                                                 </svg>
                                             </a>
@@ -175,7 +181,7 @@
     </div>
     <!-- orderhistory -->
     <div class="fixed top-0 left-0 w-full h-[100vh] items-center justify-center hidden bg-[rgba(0,0,0,0.4)]" id="popup-page">
-        <div class="w-2/3 h-5/6 bg-white rounded-md py-2 font-bold">
+        <div class="w-2/3 h-5/6 bg-white rounded-md py-2 font-bold overflow-y-auto">
             <button class="px-2 py-1 bg-red-600 text-white ml-2 rounded-md" onclick="history()">Close</button>
             <h1 class="text-2xl text-bold text-center">Histories</h1>
             <div class="orderhistory">
@@ -186,7 +192,7 @@
                     <p>Price($)</p>
                     <p class="pl-5">Date</p> 
                 </div>
-                <div class=" block  overflow-auto">
+                <div class=" block ">
                     <div th:each="invoice: ${invoices}" class="grid grid-cols-5 pl-5">
                         <p th:text="${invoice.id}"></p>
                         <p th:text="${invoice.number}"></p>
@@ -202,6 +208,10 @@
 
 
     <script>
+    
+        function storeSth(){
+            localStorage.setItem("deleted", "deleted")
+        }
         //pop up page
         let popupPage = document.getElementById("popup-page"); //form
         let historyBtn = document.getElementById("Orderhistory");

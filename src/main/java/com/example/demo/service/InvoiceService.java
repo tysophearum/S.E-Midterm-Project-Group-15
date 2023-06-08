@@ -8,5 +8,5 @@ public interface InvoiceService {
     Integer getNewInvoiceNumber();
     Invoice saveInvoice( Invoice invoice );
     Invoice getInvoiceById( Integer id);
-    List getAllInvoices();
+    List <Invoice> getAllInvoices();
 }

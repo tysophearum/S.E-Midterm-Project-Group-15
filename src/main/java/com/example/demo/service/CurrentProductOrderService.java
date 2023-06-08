@@ -12,4 +12,5 @@ public interface CurrentProductOrderService {
     String getAllOrderIds();
     Float getTotalPrice();
     void deleteAllOrders();
+    Boolean isEmpty();
 }

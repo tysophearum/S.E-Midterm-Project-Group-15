@@ -97,6 +97,12 @@
                     </a>
                 </li>
                 <li>
+                    <a th:href="@{/admin/category_management}">
+                        <span class="icon"><i class="fas fa-thin fa-clipboard"></i></span>
+                        <span class="item">Manage Category</span>
+                    </a>
+                </li>
+                <li>
                     <a id="Orderhistory">
                         <span class="icon" id="Orderhistory"><i class="fas fa-database"></i></span>
                         <span class="item" id="Orderhistory">Orderhistory</span>
@@ -136,8 +142,8 @@
                                 <p class="pl-5">Action</p>
                             </div>
                                 <div class="list-name block h-[85vh] overflow-auto">
-                                    <div th:each="user: ${users}" class="cash grid grid-cols-4 pl-5 mx-2.5 rounded-md shadow-md p-1 bg-white"  th:if="${user.role == 'user'}">
-                                        <p class="flex items-center" th:text="${user.id}"></p>
+                                    <div th:each="user, iStat : ${users}" class="cash grid grid-cols-4 pl-5 mx-2.5 rounded-md shadow-md p-1 bg-white"  th:if="${user.role == 'user'}">
+                                        <p class="flex items-center" th:text="${iStat.index + 1}"></p>
                                         <a class="flex items-center underline" th:href="@{/admin/user_management/{id} (id = ${user.id})}" th:text="${user.first_name + ' ' + user.last_name}"></a>
                                         <p class="flex items-center" th:text="${user.username}"></p>
                                         <p class="flex items-center" >
@@ -145,7 +151,7 @@
                                                 <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
                                                 </svg>                                                                          
                                             </a>
-                                            <a th:href="@{/user_management/delete/{id} (id=${user.id})}" class="delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6">
+                                            <a th:href="@{/user_management/delete/{id} (id=${user.id})}" class="delete"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red" class="w-6 h-6" onclick="storeSth()">
                                                 <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
                                                 </svg>
                                             </a>
@@ -159,13 +165,11 @@
                                 <img src="data:image/jpeg;base64," th:attrappend="src=${selectedUser.image}" alt="cashier" width="40%" class="rounded-md shadow-md">
                                 <div class="dist font-semibold lg:grid grid-cols-2 gap-1 gap-x-2 bg-white w-full p-4 rounded-md shadow-md md:block">
                                     <p>Name:</p><p th:text="${selectedUser.first_name + ' ' + selectedUser.last_name}"></p>
-                                    <p>Age: </p><p>20</p>
                                     <p>Sex: </p><p th:text="${selectedUser.sex}"></p>
-                                    <p>Hired_Day: </p><p>25-05-2022</p>
+                                    <p>Hired_Day: </p><p id="hiredate" th:text="${selectedUser.created_at}">25-05-2022</p>
                                     <p>Date of birth: </p><p id="dob" th:text="${selectedUser.date_of_birth}"></p>
                                     <p>Login: </p><p th:text="${selectedUser.username}"></p>
                                     <p>Password:</p><p th:text="${selectedUser.password}"></p>
-                                    <p>last_login:</p><p>23-09-2022</p> 
                                 </div>
                             </div>
                         </div>
@@ -176,7 +180,7 @@
     </div>
     <!-- orderhistory -->
     <div class="fixed top-0 left-0 w-full h-[100vh] items-center justify-center hidden bg-[rgba(0,0,0,0.4)]" id="popup-page">
-        <div class="w-2/3 h-5/6 bg-white rounded-md py-2 font-bold">
+        <div class="w-2/3 h-5/6 bg-white rounded-md py-2 font-bold overflow-y-auto">
             <button class="px-2 py-1 bg-red-600 text-white ml-2 rounded-md" onclick="history()">Close</button>
             <h1 class="text-2xl text-bold text-center">Histories</h1>
             <div class="orderhistory">
@@ -187,7 +191,7 @@
                     <p>Price($)</p>
                     <p class="pl-5">Date</p> 
                 </div>
-                <div class=" block  overflow-auto">
+                <div class=" h-full">
                     <div th:each="invoice: ${invoices}" class="grid grid-cols-5 pl-5">
                         <p th:text="${invoice.id}"></p>
                         <p th:text="${invoice.number}"></p>
@@ -203,9 +207,19 @@
 
 
     <script>
+    
+        function storeSth(){
+            localStorage.setItem("deleted", "deleted")
+        }
+        
         let dob = document.getElementById("dob")
         dobtext = dob.innerText.slice(0, -10)
         dob.innerText = dobtext
+
+        let hiredate = document.getElementById("hiredate")
+        hiredatetext = hiredate.innerText.slice(0, -9)
+        hiredate.innerText = hiredatetext
+        
         //pop up page
         let popupPage = document.getElementById("popup-page"); //form
         let historyBtn = document.getElementById("Orderhistory");

@@ -106,11 +106,11 @@ p{
     <div class="d-flex">
       <form th:action="@{/product_management/add_new_product/save}" method="POST" th:object="${drink}" enctype="multipart/form-data">
         <label>
-          <span class="fname">Drinks Code <span class="required">*</span></span>
+          <span class="fname">Product Code <span class="required">*</span></span>
           <input required th:field="*{code}" type="text" name="dcode">
         </label>
         <label>
-          <span class="lname">Drinks Name<span class="required">*</span></span>
+          <span class="lname">Product Name<span class="required">*</span></span>
           <input required th:field="*{name}" type="text" name="dname">
         </label>
         <label class="flex">
@@ -133,7 +133,7 @@ p{
           <input required type="file" name="file" class="custom-file-input" id="customFile"> 
         </div>
         <label style="display: flex;">
-          <button type="submit" class="Ok bg-blue-600 text-white rounded-md px-8 py-2 font-bold mr-3">Ok</button>
+          <button type="submit" class="Ok bg-blue-600 text-white rounded-md px-8 py-2 font-bold mr-3" onclick="setAdd()">Ok</button>
           <a th:href="@{/admin/product_management/drink}">
             <button type="button" class="cancel Ok bg-red-600 text-white rounded-md px-5 py-2 font-bold">Cancel</button>
           </a>
@@ -173,6 +173,10 @@ p{
   </div>
 </div>
   <script>
+    function setAdd(){
+      localStorage.setItem("added", "added")
+    }
+
     function openCal() {
         document.getElementById("newCat").style.display = "block";
     }

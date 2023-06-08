@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,6 +32,9 @@ public class User {
     private String username;
 
     private String role;
+
+    @CreationTimestamp
+    private LocalDateTime created_at;
 
     @Lob
     @Column(nullable = false, length = 2147483647)
@@ -120,6 +126,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public LocalDateTime getCreated_at() {
+        return this.created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
 

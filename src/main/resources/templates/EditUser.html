@@ -101,12 +101,17 @@
                         <input name="file" type="file"  id="inputPassword" placeholder="Input your password">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">OK</button>
+                <button type="submit" class="btn btn-primary" onclick="setEdit()">OK</button>
                 <a th:href="@{/admin/user_management}">
                     <button type="button" class="btn btn-danger">CanCel</button>
                 </a>
               </form>
         </div>
     </div>
+    <script>
+        function setEdit(){
+            localStorage.setItem("edited", "edited")
+        }
+    </script>
 </body>
 </html>
