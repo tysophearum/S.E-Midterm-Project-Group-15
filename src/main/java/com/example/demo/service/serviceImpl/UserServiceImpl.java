@@ -75,6 +75,36 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+
+
+    @Override
+    public User updateUser(User user, MultipartFile file) {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		if(fileName.contains("..") || fileName.isEmpty())
+		{
+			System.out.println("not a a valid file");
+		}
+
+        if(!user.isEmpty()){
+            try {
+                if(user.getId() == null && !fileName.isEmpty()) {
+                    String image = Base64.getEncoder().encodeToString(file.getBytes());
+                    user.setImage(image);
+                }
+                else if(user.getId() > 0 && fileName.isEmpty()){
+                    String image = userRepository.findById(user.getId()).get().getImage();
+                    user.setImage(image);
+                }
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return userRepository.save(user);
+        }
+        else{
+            return null;
+        }
+    }
     
     
 }

@@ -12,4 +12,5 @@ public interface UserService {
     User getUserById(Integer id);
     void deleteUser(Integer id);
     User getUserByUsername(String username);
+    User updateUser(User user, MultipartFile file);
 }
